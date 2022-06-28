@@ -23,11 +23,17 @@ public class OauthController {
                                 HttpServletResponse response) throws Exception {
         String accessToken = oauthService.getAccessToken(code);
         try {
-            oauthService.kakaoUserAccess(accessToken);
+            int result = oauthService.kakaoUserAccess(accessToken);
+            if(result==0){
+                session.setAttribute("firstKakaoLogin", true);
+                response.sendRedirect("mypage");
+            }else{
+                response.sendRedirect("/");
+            }
         }catch (Exception e){
             e.printStackTrace();
+            response.sendRedirect("/");
         }
-        response.sendRedirect("/");
     }
 
 

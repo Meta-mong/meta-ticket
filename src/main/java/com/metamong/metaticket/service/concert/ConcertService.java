@@ -15,8 +15,11 @@ public interface ConcertService {
     // 공연 생성
     Long addConcert(Concert concert);
 
-    // 공연 상세내역 조회
+    // 공연 상세내역 조회 -> user
     ConcertDto concertInfo(Long id);
+
+    // 공연 상세내역 조회 -> admin
+    ConcertDto concertAdmin(Long id);
 
     // 공연 수정
     void updateConcert(ConcertDto concertDto, Phamplet_File files);
@@ -38,9 +41,12 @@ public interface ConcertService {
     //오픈될 티켓 목록 8개 가져오기
     List<ConcertDto> openTickets();
 
-    //사용자가 정한 옵션들로 concert 불러오기
-    List<ConcertDto> openTicketsOptions(Genre genre, String title);
-
     //모든 오픈 예정 티켓 목록
     List<ConcertDto> allOpenTickets();
+
+    //장르별 오픈 예정 티켓 목록
+    List<ConcertDto> openTicketsByGenre(Genre genre);
+
+    // 응모 시작 일자 , 응모 종료 일자 비교
+    void isValidDate(ConcertDto.FromAdminConcert concertDto) throws Exception;
 }

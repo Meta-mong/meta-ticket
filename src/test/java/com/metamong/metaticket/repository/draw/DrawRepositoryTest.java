@@ -126,8 +126,8 @@ class DrawRepositoryTest {
     @Test
     @DisplayName("이메일 보낸 유저 중 가장 낮은 랭킹 가져오기")
     void findLowRankingGroupByConcert() {
-        int rank = drawRepository.findLowRankingGroupByConcert(1L);
-        System.out.println("rank = " + rank);
+//        int rank = drawRepository.findLowRankingGroupByConcert(1L);
+//        System.out.println("rank = " + rank);
     }
 
     @Test

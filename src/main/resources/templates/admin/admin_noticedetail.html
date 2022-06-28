@@ -60,11 +60,11 @@
         </div>
       </form>
 
-      <div class="btn">
-        <button type="button" class="qnalist" onclick="noticeList()">목록</button>
-        <button type="button" class="delete" th:onclick="|javascript:noticedelete('${notice.id}')|" >삭제</button>
-        <button type="button" class="update" th:onclick="|javascript:noticeupdate('${notice.id}')|" >수정</button>
-      </div>
+
+      <button type="button" class="qnalist" onclick="noticeList()">목록으로</button>
+      <button type="button" class="update" th:onclick="|javascript:noticeupdate('${notice.id}')|" >수정</button>
+      <button type="button" class="delete" th:onclick="|javascript:noticedelete('${notice.id}')|" >삭제</button>
+
     </div>
   </section>
 </div>

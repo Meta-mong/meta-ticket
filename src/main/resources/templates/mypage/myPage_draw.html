@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- swiper -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css"/>
     <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
 
     <!-- css -->
@@ -44,20 +44,20 @@
                     <button type="button" th:onclick="|window.location.href='/mypage'|">정보수정</button>
                     <button type="button" onclick="">응모내역</button>
                     <button type="button" th:onclick="|window.location.href='/mypage/reservation'|">예매내역</button>
-                    <button type="button" th:onclick="|window.location.href='/mypage/like'|">찜목록</button>
+                    <button type="button" th:onclick="|window.location.href='/interests'|">찜목록</button>
                 </div>
                 <div class="pageInfo">
                     <div class="mp-draw-top">
                         <span><i class="fa-solid fa-heart"></i>내 응모 내역</span>
                     </div>
                     <div class="mp-draw-main">
-                        <div>
+                        <div th:each="myDraw:${myDraws}">
                             <div class="mp-ticket-info">
                                 <div class="mp-ticket-info-div">
-                                    <img src="../../static/img/metamong.png" style="width: 120px; height:150px">
+                                    <img src="/concert/readImg/" th:attrappend="src=${myDraw.concertPhamplet}" alt="" style="width: 120px; height:150px">
                                     <div class="mp-ticket-info-div-span">
-                                        <span>뮤지컬 시규어 로스</span>
-                                        <span>세종문화회관 대극장</span>
+                                        <span th:text="${myDraw.concertTitle}">뮤지컬 시규어 로스</span>
+                                        <span th:text="${myDraw.concertAddress}">세종문화회관 대극장</span>
                                     </div>
                                 </div>
                                 <div class="mp-draw-status">
@@ -65,144 +65,38 @@
                                         <defs>
                                             <filter id="gooey">
                                                 <!-- in="sourceGraphic" -->
-                                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-                                                <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
-                                                <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
+                                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+                                                <feColorMatrix in="blur" type="matrix"
+                                                               values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                                                               result="highContrastGraphic"/>
+                                                <feComposite in="SourceGraphic" in2="highContrastGraphic"
+                                                             operator="atop"/>
                                             </filter>
                                         </defs>
                                     </svg>
 
-                                    <button class="gooey-button">
-                                        응모 대기중
-                                        <span class="bubbles">
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                </span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="mp-ticket-info">
-                                <div class="mp-ticket-info-div">
-                                    <img src="../../static/img/metamong.png" style="width: 120px; height:150px">
-                                    <div class="mp-ticket-info-div-span">
-                                        <span>뮤지컬 시규어 로스</span>
-                                        <span>세종문화회관 대극장</span>
-                                    </div>
-                                </div>
-                                <div class="mp-draw-status">
-                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                        <defs>
-                                            <filter id="gooey">
-                                                <!-- in="sourceGraphic" -->
-                                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-                                                <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
-                                                <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
-                                            </filter>
-                                        </defs>
-                                    </svg>
-
-                                    <button class="draw-cancel gooey-button">
-                                        취소
-                                        <span class="draw-cancel-span bubbles">
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                </span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="mp-ticket-info">
-                                <div class="mp-ticket-info-div">
-                                    <img src="../../static/img/metamong.png" style="width: 120px; height:150px">
-                                    <div class="mp-ticket-info-div-span">
-                                        <span>뮤지컬 시규어 로스</span>
-                                        <span>세종문화회관 대극장</span>
-                                    </div>
-                                </div>
-                                <div class="mp-draw-status">
-                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                        <defs>
-                                            <filter id="gooey">
-                                                <!-- in="sourceGraphic" -->
-                                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-                                                <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
-                                                <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
-                                            </filter>
-                                        </defs>
-                                    </svg>
-
-                                    <button class="gooey-button">
-                                        응모 대기중
-                                        <span class="bubbles">
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                </span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="mp-ticket-info">
-                                <div class="mp-ticket-info-div">
-                                    <img src="../../static/img/metamong.png" style="width: 120px; height:150px">
-                                    <div class="mp-ticket-info-div-span">
-                                        <span>뮤지컬 시규어 로스</span>
-                                        <span>세종문화회관 대극장</span>
-                                    </div>
-                                </div>
-                                <div class="mp-draw-status">
-                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                        <defs>
-                                            <filter id="gooey">
-                                                <!-- in="sourceGraphic" -->
-                                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-                                                <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
-                                                <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
-                                            </filter>
-                                        </defs>
-                                    </svg>
-
-                                    <button class="gooey-button">
-                                        응모 대기중
-                                        <span class="bubbles">
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                </span>
+                                    <button class="gooey-button" th:classappend="|${myDraw.state == '대기순번' ? 'waiting-order' : ''}
+                                                                                  ${myDraw.state == '취소' ? 'draw-cancel' : ''}
+                                                                                  ${myDraw.state == '당첨' ? 'winning' : ''}
+                                                                                  ${myDraw.state == '응모 대기중' ? 'waiting-application' : ''}
+                                                                                 |">
+                                        <span th:text="${myDraw.state} == '대기순번' ? ${myDraw.state} +': '+${myDraw.ranking} : ${myDraw.state}">응모 대기중</span>
+                                        <span class="bubbles" th:classappend="|${myDraw.state == '대기순번' ? 'waiting-order-span' : ''}
+                                                                                  ${myDraw.state == '취소' ? 'draw-cancel-span' : ''}
+                                                                                  ${myDraw.state == '당첨' ? 'winning-span' : ''}
+                                                                                  ${myDraw.state == '응모 대기중' ? 'waiting-application-span' : ''}
+                                                                                 |">
+                                            <span class="bubble"></span>
+                                            <span class="bubble"></span>
+                                            <span class="bubble"></span>
+                                            <span class="bubble"></span>
+                                            <span class="bubble"></span>
+                                            <span class="bubble"></span>
+                                            <span class="bubble"></span>
+                                            <span class="bubble"></span>
+                                            <span class="bubble"></span>
+                                            <span class="bubble"></span>
+                                        </span>
                                     </button>
                                 </div>
                             </div>

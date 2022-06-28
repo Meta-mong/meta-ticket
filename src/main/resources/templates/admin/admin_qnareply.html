@@ -48,7 +48,11 @@
               </tr>
               <tr>
                 <th scope="row">분류</th>
-                <td th:text="${question.classify}"></td>
+                <td th:if="${question.classify == 'concert'}">공연/티켓</td>
+                <td th:if="${question.classify == 'cancel'}">취소/환불</td>
+                <td th:if="${question.classify == 'event'}">이벤트</td>
+                <td th:if="${question.classify == 'member'}">회원</td>
+                <td th:if="${question.classify == 'etc'}">기타</td>
               </tr>
               <tr>
                 <th scope="row">제목</th>

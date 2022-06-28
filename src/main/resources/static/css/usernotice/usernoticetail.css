@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+
  /* common */
  a {
   text-decoration: none;
@@ -375,7 +386,7 @@ span {
 .container .innertitle{
   font-size: 35px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 40px;
   color: rgb(108, 102, 102);
 }
 
@@ -438,4 +449,8 @@ table.QnA td {
   background-color: rgb(218, 186, 248);
   margin-top: 30px;
 
+}
+
+.container .inner .btn .update:hover{
+background-color: rgb(212, 118, 231);
 }

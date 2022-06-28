@@ -7,7 +7,7 @@ function noticeList(){
  }
 
  function FAQ() {
-    window.location.href = "/faq/flist";
+    window.location.href = "/notice/faq";
  }
 
  function QNA(){

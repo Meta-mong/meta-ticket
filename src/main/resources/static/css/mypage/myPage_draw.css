@@ -1,3 +1,15 @@
+
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+
 .inner .btn > button:nth-child(2){
     background-color: rgb(218, 169, 228);
 }
@@ -81,15 +93,41 @@ svg {
 .draw-cancel-span > .bubble {
     background-color: rgb(253, 90, 65) !important;
 }
+
+.waiting-order{
+    color: #000000 !important;
+    background-color: #fff100 !important;
+}
+
+.waiting-order-span > .bubble {
+    background-color: #fff100 !important;
+}
+
+.winning {
+    color: #ffffff !important;
+    background-color: #000dff !important;
+}
+
+.winning-span > .bubble {
+    background-color: #000dff !important;
+}
+
+.waiting-application {
+    background-color: #00FF80;
+    color: #000000 !important;
+}
+
+.waiting-application-span > .bubble {
+    background-color: #00FF80 !important;
+}
+
 .gooey-button {
     padding: 1rem;
     font-size: 1rem;
     width: 140px;
     border: none;
-    color: #0c1016;
     filter: url("#gooey");
     position: relative;
-    background-color: #00FF80;
 }
 .gooey-button:focus {
     outline: none;
@@ -103,7 +141,6 @@ svg {
 
 }
 .gooey-button .bubbles .bubble {
-    background-color: #00FF80;
     border-radius: 100%;
     position: absolute;
     top: 0;

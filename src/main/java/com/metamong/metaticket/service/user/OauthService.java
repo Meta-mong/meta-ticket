@@ -5,6 +5,6 @@ public interface OauthService {
     public String getAccessToken(String code);
 
     //카카오 계정 사용자 생성
-    public void kakaoUserAccess(String token) throws Exception;
+    public int kakaoUserAccess(String token) throws Exception;
 
 }

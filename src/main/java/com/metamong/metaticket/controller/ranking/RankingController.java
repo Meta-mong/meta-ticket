@@ -34,7 +34,7 @@ public class RankingController {
         Page<Concert> concerts = concertRepository.findByGenre(pageable,Genre.CONCERT);
         Page<ConcertDto> pageDto = concerts.map(ConcertDto::createDto);
         model.addAttribute("concert",pageDto);
-        return "/ranking/ranking";
+        return "ranking/ranking";
     }
 
     @GetMapping(value={"/","/{genre}"})

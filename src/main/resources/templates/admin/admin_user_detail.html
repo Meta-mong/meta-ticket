@@ -43,7 +43,7 @@
                                 </li>
                                 <li class="attr_sub">
                                     <div class="attr_key">이름</div>
-                                    <input class="attr_value" type="text" th:value="${user.name}" id="name">
+                                    <input class="attr_value" type="text" th:value="${user.name}" id="name" style="border-bottom: 2px solid; background: navajowhite;">
                                 </li>
                                 <li class="attr_sub">
                                     <div class="attr_key">생년월일</div>
@@ -53,14 +53,14 @@
                                     <div class="attr_key">휴대폰</div>
                                     <input class="attr_value" type="text" th:value="${user.number}" readonly>
                                 </li>
-                                <li class="attr_sub">
-                                    <div class="attr_key">응모 탈락 횟수</div>
-                                    <input class="attr_value" type="text" th:value="${user.loserCnt}" id="loserCnt">
-                                </li>
-                                <li class="attr_sub">
-                                    <div class="attr_key">응모 취소 횟수</div>
-                                    <input class="attr_value" type="text" th:value="${user.cancelCnt}" id="cancelCnt">
-                                </li>
+<!--                                <li class="attr_sub">-->
+<!--                                    <div class="attr_key">응모 탈락 횟수</div>-->
+<!--                                    <input class="attr_value" type="text" th:value="${user.loserCnt}" id="loserCnt">-->
+<!--                                </li>-->
+<!--                                <li class="attr_sub">-->
+<!--                                    <div class="attr_key">응모 취소 횟수</div>-->
+<!--                                    <input class="attr_value" type="text" th:value="${user.cancelCnt}" id="cancelCnt">-->
+<!--                                </li>-->
                             </ul>
                         </div>
                         <!-- <div class="black_list">블랙리스트💣</div> -->
@@ -82,13 +82,13 @@
                                     <tr th:each="draw : ${draws}">
                                         <td th:text="${draw.concertId}"></td>
                                         <td th:text="${draw.concertTitle}"></td>
-                                        <td th:text="${draw.ranking}"></td>
+                                        <td th:text="${draw.state} == '대기순번' ? ${draw.ranking} : ''"></td>
                                         <td th:text="${draw.state}"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <button type="button" class="ret_btn" id="ret_btn">돌아가기</button>
+                        <button type="button" class="ret_btn" id="ret_btn">목록으로</button>
                         <button type="button" class="modify_btn" id="modify_btn">수정</button>
                     </div>
                 </div>

@@ -56,21 +56,28 @@
                   <th>내용</th>
                   <td th:text="${question.quesContent}" id="content"></td>
                 </tr>
+                <tr>
+                  <th>관리자 답변 </th>
+                  <td th:text="${question.answer}"></td>
+                </tr>
               
               </table>
             </div>
           </form>
-        
-          <div class="btn">
-            <button type="button" class="qnalist" onclick="questionList()">목록</button>
-            <div th:unless="${session.user}==null">
-              <button type="button" class="delete" th:if="${session.user.id}==${question.userId}" th:onclick="|javascript:qnadelete('${question.id}')|">삭제
-              </button>
-            </div>
-            <button type="button" class="update" th:onclick="|javascript:qnaupdate('${question.id}')|" >수정</button>
-          </div>
-        </div>
 
+
+          <button type="button" class="qnalist" onclick="questionList()">목록</button>
+
+
+          <div th:unless="${session.user}==null">
+            <button type="button" class="update" th:if="${session.user.id}==${question.userId}"  th:onclick="|javascript:qnaupdate('${question.id}')|" >수정</button>
+            <button type="button" class="delete" th:if="${session.user.id}==${question.userId}" th:onclick="|javascript:qnadelete('${question.id}')|">삭제
+            </button>
+          </div>
+
+
+
+        </div>
       </section>
     </div>
 

@@ -15,15 +15,10 @@ public interface ConcertRepository extends JpaRepository<Concert,Long> {
 
     List<Concert> findAllByDrawStartDateAfter(LocalDate now, Pageable pageable);
 
-    //Concert findByGenreAndTitle(Genre genre, String title);
-
     //오픈 티켓 모든 장르
     List<Concert> findAllByDrawStartDateAfterOrderByDrawStartDateAsc(LocalDate now);
 
     //장르별 오픈 티켓
     List<Concert> findByGenreAndDrawStartDateAfterOrderByDrawStartDateAsc(Genre genre, LocalDate now);
-
-    //제목별 오픈 티켓ㄴ
-    Concert findByTitleAndDrawStartDateAfterOrderByDrawStartDateAsc(String title, LocalDate now);
 
 }

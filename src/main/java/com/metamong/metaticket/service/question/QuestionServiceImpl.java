@@ -146,8 +146,15 @@ public class QuestionServiceImpl implements QuestionService{
         questionRepository.delete(reply);
     }
 
+    @Override
+    public Page<QuestionDTO.Quest> qnaselet(String classify, Pageable pageable) throws Exception {
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1); // page는 index 처럼 0부터 시작
+        pageable = PageRequest.of(page, 10, Sort.by("id").descending());
+        Page<Question> questions = questionRepository.findByClassifyOrderByCreatedDateDesc(classify,pageable);
+        Page<QuestionDTO.Quest> dto = questions.map(QuestionServiceImpl::entityToDTO);
 
-
+        return dto;
+    }
 
 
 }

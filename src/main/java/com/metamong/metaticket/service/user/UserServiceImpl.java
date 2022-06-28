@@ -218,12 +218,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public boolean modifyPasswd(HttpSession session, String passwd) {
+    public boolean modifyInfo(HttpSession session, String passwd, int age) {
         //인증과정은 생략됨
+        String encryptedPasswd = passwordEncoder.encode(passwd);
         UserDTO.SESSION_USER_DATA userDTO = (UserDTO.SESSION_USER_DATA)session.getAttribute("user");
-        userDTO.setPasswd(passwd);
-        User user = User.createUser(userDTO, passwordEncoder);
-        user.setId(userDTO.getId());
+        User user = userRepository.findById(userDTO.getId()).get();
+        user.setPasswd(encryptedPasswd);
+        user.setAge(age);
         User modifiedUser = userRepository.save(user);
         if(userDTO.getId()==modifiedUser.getId())return true;
         return false;

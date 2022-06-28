@@ -1,9 +1,19 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
 /* button */
 .container .list {
   display: block;
   justify-content: left;
   margin-top: 60px;
-  margin-left: 125px;
+  margin-left: 152px;
   margin-bottom: -48px;
 }
 
@@ -83,48 +93,42 @@
 }
 .container .main .form-group textarea{
   width: 830px;
-  height: 600px;
+  height: 500px;
   resize: none;
 }
 
-.container .main .btn .delete{
-  background-color: rgb(207, 61, 119);
-  width: 200px;
-  padding: 5px 50px;
-  font-size: 23px;
-  font-weight: bold;
-  font-style: italic;
-  border: none;
-  border-radius: 30px;
-  float: left;
-  color: rgb(255, 255, 255);
-  background-color: rgb(218, 186, 248);
+.container .main .delete{
+   height: 45px;
+   width: 100px;
+   margin-top: 20px;
+   background-color: rgb(186,133,236);
+   border: none;
+   font-weight: 700;
+   font-size: 14px;
+   cursor: pointer;
 }
-.container .main .btn .update{
-  background-color: rgb(215, 158, 228);
-  width: 200px;
-  padding: 5px 50px;
-  font-size: 23px;
-  font-weight: bold;
-  font-style: italic;
-  border: none;
-  border-radius: 30px;
-  color: rgb(255, 255, 255);
-  background-color: rgb(218, 186, 248);
-  margin-left: 10px;
+.container .main .update{
+   height: 45px;
+   width: 100px;
+   margin-top: 20px;
+   background-color: rgb(186,133,236);
+   border: none;
+   font-weight: 700;
+   font-size: 14px;
+   cursor: pointer;
 }
-.container .main .btn .return{
-  background-color: rgb(215, 158, 228);
-  width: 200px;
-  padding: 5px 50px;
-  font-size: 23px;
-  font-weight: bold;
-  font-style: italic;
-  border: none;
-  border-radius: 30px;
-  float: right;
-  color: rgb(255, 255, 255);
-  background-color: rgb(218, 186, 248);
-  margin-left: 10px;
+.container .main  .return{
+   height: 45px;
+   width: 100px;
+   background-color: rgb(186,133,236);
+   border: none;
+   font-weight: 700;
+   font-size: 14px;
+   cursor: pointer;
 }
 
+.container .main .delete:hover,
+.container .main .update:hover,
+.container .main  .return:hover {
+    background-color: blueviolet;
+  }

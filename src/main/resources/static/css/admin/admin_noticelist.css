@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+
 /* button */
 .container .list {
   display: block;
@@ -27,7 +38,7 @@
 }
 
 /* main */
-.container .main .btn {
+.container .main .noticebtn{
   display: block;
   justify-content: left;
   float: left;
@@ -43,13 +54,7 @@
   border: 0;
 }
 
-
-.container .main .btn:hover {
-  background-color: gray;
-  color: whitesmoke;
-}
-
-.container .main .btn_submit {
+.container .main .QnAbtn{
   display: block;
   justify-content: left;
   float: left;
@@ -57,11 +62,31 @@
   height: 40px;
   width : 104px;
   font-size: 23px;
-  background-color: rgb(218,186,248);
+  background-color: lightgray;
   color: whitesmoke;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 30px;
   margin-left: 20px;
+  border: 0;
+}
+
+.container .main .QnAbtn:hover
+.container .main .noticebtn:hover {
+  background-color: gray;
+  color: whitesmoke;
+}
+
+.container .main .btn_submit {
+  display: block;
+  float: right;
+  text-align: center;
+  height: 40px;
+  width : 104px;
+  font-size: 20px;
+  background-color: rgb(218,186,248);
+  color: whitesmoke;
+  margin-top: 20px;
+  margin-right : 20px;
   border: 0;
 }
 
@@ -102,7 +127,7 @@
 
 /* ticket_list */
 .container .main .inner {
-  min-height 550px;
+  min-height: 550px;
 }
 
 .container .main .notice_list{
@@ -129,6 +154,12 @@
  .container .main .question_list td{
   padding: 10px;
   border-top: solid 1px lightgray;
+}
+
+.container .main .question_list td:nth-child(3){
+    overflow:hidden;
+    white-space : nowrap;
+    text-overflow: ellipsis;
 }
 
 .container .main .question_list td:last-child{

@@ -29,6 +29,13 @@ window.addEventListener("load", function(event){
         }
     });
 
+    $("#passwd").keypress(function (e){
+        if(e.keyCode == 13){
+            signinbtn.click();
+            e.preventDefault(); //클릭 이벤트 외에 별도의 브라우저 행동을 막기 위해 사용하는 메서드
+        }
+    });
+
     signinbtn.addEventListener("click", function(event) {
         var flag = true;
 
@@ -91,6 +98,9 @@ window.addEventListener("load", function(event){
                     }else{
                         location.replace("/");
                     }
+                }else{
+                    alert("계정정보가 일치하지 않습니다.");
+                    location.replace("/signin");
                 }
             },
             error: function (data, statusText) {

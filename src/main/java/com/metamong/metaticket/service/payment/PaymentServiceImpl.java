@@ -5,6 +5,7 @@ import com.metamong.metaticket.domain.draw.Draw;
 import com.metamong.metaticket.domain.draw.DrawState;
 import com.metamong.metaticket.domain.payment.Payment;
 import com.metamong.metaticket.domain.payment.PaymentStatus;
+import com.metamong.metaticket.domain.payment.dto.PaymentDTO;
 import com.metamong.metaticket.domain.user.User;
 import com.metamong.metaticket.domain.user.dto.UserDTO;
 import com.metamong.metaticket.repository.concert.ConcertRepository;
@@ -18,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -36,6 +39,25 @@ public class PaymentServiceImpl implements PaymentService {
     @Transactional
     public Payment savePayment(User user, Concert concert) {
         return paymentRepository.save(Payment.createPayment(user, concert));
+    }
+
+    @Override
+    public List<PaymentDTO.HiSTORY> findByUserId(Long userId) {
+        List<Payment> findPayments = paymentRepository.findByUserId(userId);
+        List<PaymentDTO.HiSTORY> myPayments = findPayments.stream().map(
+                        p -> PaymentDTO.HiSTORY.builder()
+                                .id(p.getId())
+                                .userName(p.getUser().getName())
+                                .concertTitle(p.getConcert().getTitle())
+                                .concertAddress(p.getConcert().getAddress())
+                                .concertPhamplet(p.getConcert().getPhamplet().getId())
+                                .amount(p.getAmount())
+                                .status(getPaymentStatusForFront(p.getPaymentStatus()))
+                                .build()
+                )
+                .collect(Collectors.toList());
+
+        return myPayments;
     }
 
     @Override
@@ -102,5 +124,14 @@ public class PaymentServiceImpl implements PaymentService {
 
     private UserDTO.SESSION_USER_DATA getUserDTO() {
         return (UserDTO.SESSION_USER_DATA) httpSession.getAttribute("user");
+    }
+
+    private String getPaymentStatusForFront(PaymentStatus status) {
+        switch (status) {
+            case FAILED: return "결제실패";
+            case IN_PROGRESS: return "결제중";
+            case COMPLETE: return "결제완료";
+        }
+        return null;
     }
 }

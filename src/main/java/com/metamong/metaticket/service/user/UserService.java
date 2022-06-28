@@ -38,7 +38,8 @@ public interface UserService {
     public String inquireEmail(String number);
 
     //비밀번호 변경
-    public boolean modifyPasswd(HttpSession session, String passwd);
+    //public boolean modifyPasswd(HttpSession session, String passwd);
+    public boolean modifyInfo(HttpSession session, String passwd, int age);
 
     //비밀번호 변경(다형성)
     public void modifyPasswd(Long id, String passwd);

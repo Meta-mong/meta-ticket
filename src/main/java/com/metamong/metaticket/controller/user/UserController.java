@@ -32,7 +32,7 @@ public class UserController {
     //회원가입
     @GetMapping("/signup")
     public String signUp(){
-        return "/user/signup";
+        return "user/signup";
     }
 
     //로그인
@@ -42,27 +42,27 @@ public class UserController {
         session.setAttribute("kakaoApiKey", apiKey);
         session.setAttribute("kakaoRedirectUri", redirectUri);
 
-        return "/user/signin";
+        return "user/signin";
     }
 
     //로그아웃
     @GetMapping("/signout")
     public String signOut(){
         userService.signOut(session);
-        return "redirect:/";
+        return "redirect:";
     }
 
     //email&pw 찾기
     @GetMapping("/findaccount")
     public String findAccount(){
-        return "/user/findAccount";
+        return "user/findAccount";
     }
 
     //마이페이지 첫 화면(회원 상세 정보 페이지)
     @GetMapping("/mypage")
     public String myPage(HttpServletRequest request, HttpServletResponse response){
-        if(session.getAttribute("user")==null) return "/user/signin";
-        return "/mypage/myPage_userInfo";
+        if(session.getAttribute("user")==null) return "user/signin";
+        return "mypage/myPage_userInfo";
     }
 
     //계정 복구

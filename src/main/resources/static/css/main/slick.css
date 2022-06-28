@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
 /* Slider */
 .slick-slider
 {
@@ -92,10 +102,18 @@
 }
 .slick-slide > span
 {
-    display: block;
     text-align: center;
     padding: 3px;
     margin: 0 auto;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.slick-slide > span:nth-child(2) {
+    font-weight: 600;
+    text-shadow: 1px 1px 2px #ffa5f6, 0 0 1em #ff00f0, 0 0 0.2em white;
 }
 .slick-slide.slick-loading img
 {

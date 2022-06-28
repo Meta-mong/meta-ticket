@@ -1,6 +1,7 @@
 package com.metamong.metaticket.service.payment;
 
 import com.metamong.metaticket.domain.payment.Payment;
+import com.metamong.metaticket.domain.payment.PaymentStatus;
 import com.metamong.metaticket.domain.payment.kakao.KakaoPayApprovalVO;
 import com.metamong.metaticket.domain.payment.kakao.KakaoPayReadyVO;
 import com.metamong.metaticket.repository.payment.PaymentRepository;
@@ -83,6 +84,7 @@ public class KakaoPayService {
         log.info("-----------------------------");
 
         Payment payment = paymentRepository.findById(paymentId).orElseThrow(() -> new NoSuchElementException());
+        payment.setPaymentStatus(PaymentStatus.COMPLETE);
 
         RestTemplate restTemplate = new RestTemplate();
 

@@ -17,12 +17,6 @@
 
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
-    <!-- 부트스트랩 => 나중에 삭제-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- css -->
     <link rel="stylesheet" href="/css/main/main.css">
     <link rel="stylesheet" href="/css/concert/concert.css">
@@ -33,7 +27,7 @@
     <title>Concert</title>
 </head>
 
-<body>
+<body th:onload = "header_concert([[${genre}]])">
 <div class="main">
 
     <!-- header 시작 -->
@@ -41,9 +35,6 @@
     <!-- header 끝 -->
 
     <div class="container" style="min-height: 100vh;">
-        <!-- <div class="concert-genre">
-          콘서트
-        </div> -->
 
         <section class="concert">
 
@@ -52,22 +43,22 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <img
-                                    src="http://image.toast.com/aaaaab/ticketlink/TKL_7/990X280_%EC%9D%B4-%EA%B5%AC%EC%97%AD%EC%9D%98-%EC%9D%B4%EA%B8%B0%EC%A0%81%EC%9D%B8-X.jpg"
+                                    src="/img/concert_swiper/"  th:attrappend ="src=${genre} + 1.jpg"
                                     alt="">
                         </div>
                         <div class="swiper-slide">
                             <img
-                                    src="http://image.toast.com/aaaaab/ticketlink/TKL_9/990x280_%ED%95%9C%EB%BC%98%EC%82%AC%EC%9D%B4.jpg"
+                                    src="/img/concert_swiper/"  th:attrappend ="src=${genre} + 2.jpg"
                                     alt="">
                         </div>
                         <div class="swiper-slide">
                             <img
-                                    src="http://image.toast.com/aaaaab/ticketlink/TKL_4/%EC%97%B0%EA%B7%B9_%EC%89%AC%EC%96%B4%EB%A7%A4%EB%93%9C%EB%8B%88%EC%8A%A4_01_%EB%A9%94%EC%9D%B8%EA%B3%B5%EC%97%B0%EC%A0%84%EC%8B%9C_990x280.jpg"
+                                    src="/img/concert_swiper/"  th:attrappend ="src=${genre} + 3.jpg"
                                     alt="">
                         </div>
                         <div class="swiper-slide">
                             <img
-                                    src="http://image.toast.com/aaaaab/ticketlink/TKL_7/%EA%B3%B5%EC%97%B0%EC%A0%84%EC%8B%9C_%EB%A9%94%EC%9D%B8_990x280_%EB%9D%BC%EB%A9%B4(1).jpg"
+                                    src="/img/concert_swiper/"  th:attrappend ="src=${genre} + 4.jpg"
                                     alt="">
                         </div>
                     </div>
@@ -75,7 +66,7 @@
             </div>
             <div class="concert-posting">
                 <div class="inner" th:each = "concert : ${concert}">
-                    <div  class="fnConcertDescription" onclick="">
+                    <div  class="fnConcertDescription" th:onclick="|javascript:move_description('${concert.id}')|">
                         <div class="concert-img">
                             <figure class="image"><img
                                     src="/concert/readImg/"
@@ -137,5 +128,18 @@
     <!-- footer 끝 -->
 </div>
 </body>
-
+<!-- javascript -->
+<script type="text/javascript">
+    function header_concert(genre){
+        if(genre == 'CONCERT'){
+            $('.contents1').toggleClass('on');
+         }else if(genre =='MUSICAL_DRAMA'){
+            $('.contents2').toggleClass('on');
+         }else if(genre =='CLASSIC'){
+            $('.contents3').toggleClass('on');
+         }else if(genre =='EXHIBITION'){
+            $('.contents4').toggleClass('on');
+         }
+    }
+</script>
 </html>

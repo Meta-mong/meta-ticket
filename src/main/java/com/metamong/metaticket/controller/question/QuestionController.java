@@ -22,6 +22,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,11 +46,21 @@ public class QuestionController {
         return "reply";
     }
 
+
+
     //문의사항 리스트 조회
-    @GetMapping("/qlist")
-    public String questionList( Model model, Pageable pageable) throws Exception{
-        Page<QuestionDTO.Quest> questionList = questionService.allQuestionList(pageable);
+    @GetMapping(value = {"/qlist","/qlist/{classify}"})
+    public String questionList(@PathVariable(required = false)String classify, Model model, Pageable pageable) throws Exception{
+
+        Page<QuestionDTO.Quest> questionList = null;
+        if(classify == null){
+            questionList = questionService.allQuestionList(pageable);
+        }else {
+            questionList = questionService.qnaselet(classify, pageable);
+        }
+
         model.addAttribute("allQuestionList", questionList);
+
 
         log.info("총 element 수 : {}, 전체 page 수 : {}, 페이지에 표시할 element 수 : {}, 현재 페이지 index : {}, 현재 페이지의 element 수 : {}",
                 questionList.getTotalElements(), questionList.getTotalPages(), questionList.getSize(),
@@ -65,34 +76,35 @@ public class QuestionController {
         User user = userService.userInfo(questionDto.getUserId());
         model.addAttribute("userName", user.getName());
         model.addAttribute("question",questionDto);
-        return "/question/userqnadetail";
+        return "question/userqnadetail";
     }
 
     //문의사항 등록
     @GetMapping("/userqnaadd")
     public String questionadd(Model model){
-        UserDTO.SESSION_USER_DATA dto = (UserDTO.SESSION_USER_DATA)session.getAttribute("user");
-        model.addAttribute("userId", dto.getName());
-        return "/question/userqnaadd";
+        UserDTO.SESSION_USER_DATA currentUser = (UserDTO.SESSION_USER_DATA)session.getAttribute("user");
+        if (currentUser == null)
+            return "redirect:/signin";
+        model.addAttribute("userId", currentUser.getName());
+        return "question/userqnaadd";
     }
 
 
     //문의사항 등록 - 처리
     @PostMapping( "/userqnaadd")
     public String questionadd(@ModelAttribute QuestionDTO.AddQuest dto, Model model,Pageable pageable){
-
         try {
             boolean result = questionService.register(dto, session);
             if(result == true){
                 Page<QuestionDTO.Quest> qup = questionService.allQuestionList(pageable);
                 model.addAttribute("list",qup);
-                return "redirect:/question/qlist";
+                return "redirect:question/qlist";
             }
             throw new Exception();
         } catch (Exception e) {
             e.printStackTrace();
             model.addAttribute("err","등록실패");
-            return "redirect:/question/userqnaadd";
+            return "redirect:question/userqnaadd";
 
         }
     }
@@ -102,7 +114,7 @@ public class QuestionController {
     public void questionDelete (@PathVariable Long questionId, HttpServletRequest request,
                                 HttpServletResponse response) throws Exception {
         questionService.questionDelete(questionId);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/question/qlist");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("question/qlist");
         dispatcher.forward(request,response);
     }
 
@@ -114,7 +126,7 @@ public class QuestionController {
         User user = userService.userInfo(questionDto.getUserId());
         model.addAttribute("userName", user.getName());
         model.addAttribute("question",questionDto);
-        return "/question/userqnaupdate";
+        return "question/userqnaupdate";
     }
 
 
@@ -152,24 +164,8 @@ public class QuestionController {
         return  ResponseEntity.ok(ques_id);
     }
 
-    //댓글 여부
-//    @PostMapping(value = "/answer")
-//    public String answer (@ModelAttribute QuestionDTO.Quest dto, Model model,Pageable pageable){
-//
-//        try {
-//            boolean result = questionService.register(dto,session);
-//            if(result == true){
-//                Page<QuestionDTO.Quest> replyanswer  = questionService.allQuestionList(pageable);
-//                model.addAttribute("answer",replyanswer);
-//                return "questionlist";
-//            }
-//            throw new Exception();
-//        } catch (Exception e) {
-//            model.addAttribute("err","등록실패");
-//            return "replyupload"; // jsp
-//
-//        }
-//    }
+
+
 
 
 }

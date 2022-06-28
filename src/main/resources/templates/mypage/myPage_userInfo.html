@@ -44,11 +44,16 @@
                             <button type="button" th:onclick="">정보수정</button>
                             <button type="button" th:onclick="|window.location.href='/mypage/draw'|">응모내역</button>
                             <button type="button" th:onclick="|window.location.href='/mypage/reservation'|">예매내역</button>
-                            <button type="button" th:onclick="|window.location.href='/mypage/like'|">찜목록</button>
+                            <button type="button" th:onclick="|window.location.href='/interests'|">찜목록</button>
                         </div>
                         <div class="pageInfo">
                             <article style="display: block;">
                                 <div class="user_info">
+                                    <div th:unless="${session.firstKakaoLogin == null}">
+                                        <script type="text/javascript">
+                                            alert("환영합니다. 비밀번호와 나이를 설정해주세요!");
+                                        </script>
+                                    </div>
                                     <ul class="attr">
                                         <li class="attr_sub">
                                             <div class="attr_key">이메일</div>
@@ -62,17 +67,19 @@
                                             <div class="attr_key">비밀번호</div>
                                             <input class="attr_value" type="password" id="passwd">
                                         </li>
+                                        <div class="msg" id="passwdmsg"></div>
                                         <li class="attr_sub">
                                             <div class="attr_key">비밀번호 확인</div>
-                                            <input class="attr_value" type="password">
+                                            <input class="attr_value" type="password" id="passwdck">
                                         </li>
+                                        <div class="msg" id="passwdckmsg"></div>
                                         <li class="attr_sub">
                                             <div class="attr_key">이름</div>
                                             <input class="attr_value" type="text" th:value="${session.user.name}" disabled>
                                         </li>
                                         <li class="attr_sub">
                                             <div class="attr_key">생년월일</div>
-                                            <input class="attr_value" type="text" th:value="${session.user.age}">
+                                            <input class="attr_value" id="age" type="text" th:value="${session.user.age}">
                                         </li>
                                         <li class="attr_sub">
                                             <div class="attr_key">휴대폰</div>
@@ -82,14 +89,26 @@
                                 </div>
                             </article>
 
+
                             <button type="button" class="modify_btn" id="modify_btn">수정하기</button>
                             <button type="button" class="resign_btn" id="resign_btn">탈퇴하기</button>
-
                         </div>
 
                     </div>
                 </section>
+                <div id="modal">
+                    <div class="modal_content">
+                        <h2>탈퇴하시겠습니까? </h2>
+                        <h2>현재 비밀번호를 입력해주세요 </h2>
+                        <input type="password" id="resignPasswd" placeholder="password">
+                        <div class="btn">
+                            <button class="modal_btn" type="button" id="modal_confirm_btn">확인</button>
+                            <button class="modal_btn" type="button" id="modal_cancle_btn">취소</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
 
             <!-- footer 시작 -->
             <div th:replace="fragments/footer :: footerFragment"></div>

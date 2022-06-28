@@ -113,7 +113,8 @@ class UserServiceTest {
                 build();
         session.setAttribute("user", userDTO);
         String passwd = "1234";
-        boolean result = service.modifyPasswd(session, passwd);
+        int age = 20220626;
+        boolean result = service.modifyInfo(session, passwd, age);
         System.out.println("modify result : "+result);
 
         boolean comparePasswd = service.passwdCheck(passwd, userRepository.findById(1L).get());

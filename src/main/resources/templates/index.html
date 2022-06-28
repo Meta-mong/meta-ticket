@@ -32,25 +32,25 @@
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="/concert/readImg/1" alt="">
+                    <img src="/concert/readImg/1" alt="" th:onclick="|javascript:moveToDetail(1)|">
                 </div>
                 <div class="swiper-slide">
-                    <img src="/concert/readImg/2" alt="">
+                    <img src="/concert/readImg/2" alt="" th:onclick="|javascript:moveToDetail(2)|">
                 </div>
                 <div class="swiper-slide">
-                    <img src="/concert/readImg/3" alt="">
+                    <img src="/concert/readImg/3" alt="" th:onclick="|javascript:moveToDetail(3)|">
                 </div>
                 <div class="swiper-slide">
-                    <img src="/concert/readImg/4" alt="">
+                    <img src="/concert/readImg/4" alt="" th:onclick="|javascript:moveToDetail(4)|">
                 </div>
                 <div class="swiper-slide">
-                    <img src="/concert/readImg/5" alt="">
+                    <img src="/concert/readImg/5" alt="" th:onclick="|javascript:moveToDetail(5)|">
                 </div>
                 <div class="swiper-slide">
-                    <img src="/concert/readImg/6" alt="">
+                    <img src="/concert/readImg/6" alt="" th:onclick="|javascript:moveToDetail(6)|">
                 </div>
                 <div class="swiper-slide">
-                    <img src="/concert/readImg/7" alt="">
+                    <img src="/concert/readImg/7" alt="" th:onclick="|javascript:moveToDetail(7)|">
                 </div>
 
             </div>
@@ -60,15 +60,15 @@
 
         </div>
 
-        <div class="ticket-open-issue" style="width: 1008px; margin: 10px auto; font-size: 30px; font-weight: bold;">티켓 오픈 소식</div>
+        <div class="ticket-open-issue" style="width: 1008px; margin: 10px auto; font-size: 30px; font-weight: bold;"><i class="fa-solid fa-ticket"></i><span>티켓 오픈 소식</span></div>
         <div class="ticket-open">
             <div class="ticket-open-top">
-<!--                <span class="ticket-open-top-span">티켓 오픈 소식</span>-->
+                <!--                <span class="ticket-open-top-span">티켓 오픈 소식</span>-->
                 <span id="ticket-open-page" class="ticket-open-1">1</span>
                 <span class="ticket-open-2"> / 2</span>
             </div>
             <div class="multiple-items">
-                <div th:each="openticket : ${opentickets}">
+                <div th:each="openticket : ${opentickets}" th:onclick="|javascript:moveToDetail(${openticket.id})|">
                     <img src="/concert/readImg/" th:attrappend="src=${openticket.phamplet}" alt="">
                     <span th:text="${openticket.title}"></span>
                     <span th:text="${openticket.drawStartDate}+' ~ '+${openticket.drawEndDate}"></span>
@@ -85,74 +85,14 @@
                 </div>
                 <div class="ranking-div-top-right">
                     <ul>
-                        <li><input type="button"  class = "btn" value = "콘서트"  th:onclick="|javascript:ranking('CONCERT')|"/></li>
-                        <li><input type="button"  class = "btn" value = "뮤지컬/연극" th:onclick="|javascript:ranking('MUSICAL_DRAMA')|"/></li>
-                        <li><input type="button"  class = "btn" value = "클래식"  th:onclick="|javascript:ranking('CLASSIC')|"/></li>
-                        <li><input type="button"  class = "btn" value = "전시/행사"  th:onclick="|javascript:ranking('EXHIBITION')|"/></li>
+                        <li><input type="button"  class = "btn fill ranking-btn" value = "콘서트"  th:onclick="|javascript:ranking('CONCERT')|"/></li>
+                        <li><input type="button"  class = "btn fill ranking-btn" value = "뮤지컬/연극" th:onclick="|javascript:ranking('MUSICAL_DRAMA')|"/></li>
+                        <li><input type="button"  class = "btn fill ranking-btn" value = "클래식"  th:onclick="|javascript:ranking('CLASSIC')|"/></li>
+                        <li><input type="button"  class = "btn fill ranking-btn" value = "전시/행사"  th:onclick="|javascript:ranking('EXHIBITION')|"/></li>
                     </ul>
                 </div>
             </div>
-            <div class="ranking-div-main">
-<!--                <div class="ranking-div-main-plus">-->
-<!--                    <a href="#"><i class="fa-solid fa-plus"></i></a>-->
-<!--                </div>-->
-
-<!--                <div>-->
-<!--                    <div class="ranking1">-->
-<!--                        <svg height="300" width="400">-->
-<!--                            <polygon points="0,0 40,0 40,40 20,30 0,40" style="fill:rgb(255, 98, 67);stroke:rgb(255, 98, 67);stroke-width:1" />-->
-<!--                            Sorry, your browser does not support inline SVG.-->
-<!--                            <text x="15" y="22" font-family="Verdana" font-size="20" fill="white">1</text>-->
-<!--                        </svg>-->
-<!--                    </div>-->
-<!--                    <img src="img/metamong.png" alt="">-->
-<!--                    <span>나는 메타몽이다!</span>-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                    <div class="ranking1">-->
-<!--                        <svg height="300" width="400">-->
-<!--                            <polygon points="0,0 40,0 40,40 20,30 0,40" style="fill:rgb(137, 137, 137);stroke:rgb(137, 137, 137);stroke-width:1" />-->
-<!--                            Sorry, your browser does not support inline SVG.-->
-<!--                            <text x="15" y="22" font-family="Verdana" font-size="20" fill="white">2</text>-->
-<!--                        </svg>-->
-<!--                    </div>-->
-<!--                    <img src="img/metamong.png" alt="">-->
-<!--                    <span>나는 메타몽이다!</span>-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                    <div class="ranking1">-->
-<!--                        <svg height="300" width="400">-->
-<!--                            <polygon points="0,0 40,0 40,40 20,30 0,40" style="fill:rgb(137, 137, 137);stroke:rgb(137, 137, 137);stroke-width:1" />-->
-<!--                            Sorry, your browser does not support inline SVG.-->
-<!--                            <text x="15" y="22" font-family="Verdana" font-size="20" fill="white">3</text>-->
-<!--                        </svg>-->
-<!--                    </div>-->
-<!--                    <img src="img/metamong.png" alt="">-->
-<!--                    <span>나는 메타몽이다!</span>-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                    <div class="ranking1">-->
-<!--                        <svg height="300" width="400">-->
-<!--                            <polygon points="0,0 40,0 40,40 20,30 0,40" style="fill:rgb(137, 137, 137);stroke:rgb(137, 137, 137);stroke-width:1" />-->
-<!--                            Sorry, your browser does not support inline SVG.-->
-<!--                            <text x="15" y="22" font-family="Verdana" font-size="20" fill="white">4</text>-->
-<!--                        </svg>-->
-<!--                    </div>-->
-<!--                    <img src="img/metamong.png" alt="">-->
-<!--                    <span>나는 메타몽이다!</span>-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                    <div class="ranking1">-->
-<!--                        <svg height="300" width="400">-->
-<!--                            <polygon points="0,0 40,0 40,40 20,30 0,40" style="fill:rgb(137, 137, 137);stroke:rgb(137, 137, 137);stroke-width:1" />-->
-<!--                            Sorry, your browser does not support inline SVG.-->
-<!--                            <text x="15" y="22" font-family="Verdana" font-size="20" fill="white">5</text>-->
-<!--                        </svg>-->
-<!--                    </div>-->
-<!--                    <img src="img/metamong.png" alt="">-->
-<!--                    <span>나는 메타몽이다!</span>-->
-<!--                </div>-->
-            </div>
+            <div class="ranking-div-main"></div>
         </div>
 
         <div class="ticket-pick">
@@ -162,64 +102,33 @@
             </div>
 
             <div class="ticket-pick-main">
+                <div class="ticket-pick-main1-div"></div>
+                <div class="ticket-pick-main1"></div>
+                <div class="ticket-pick-main2-div"></div>
+                <div class="ticket-pick-main2"></div>
+                <div class="ticket-pick-main3-div"></div>
+                <div class="ticket-pick-main3"></div>
+                <div class="ticket-pick-main4-div"></div>
+                <div class="ticket-pick-main4"></div>
+
                 <div class="ticket-pick-main-top">
                     <ul>
-                        <li><a href="#none">콘서트</a></li>
-                        <li><a href="#none">뮤지컬/연극</a></li>
-                        <li><a href="#none">클래식</a></li>
-                        <li><a href="#none">전시/행사</a></li>
+                        <li><span>콘서트</span></li>
+                        <li><span>뮤지컬/연극</span></li>
+                        <li><span>클래식</span></li>
+                        <li><span>전시/행사</span></li>
                     </ul>
                 </div>
 
                 <div class="ticket-pick-main-body">
-                    <div class="card0" data-tilt>
-                        <img src="img/metamong.png" alt="">
-                        <span>나는 메타모오오옹이다. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                        <span>2022.08.19 ~ 2022.08.20</span>
-                        <span>올림픽 공원에서 만날것이야. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                    </div>
-                    <div class="card1" data-tilt data-tilt-scale="0.95" data-tilt-startY="40">
-                        <img src="img/metamong.png" alt="">
-                        <span>나는 메타모오오옹이다. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                        <span>2022.08.19 ~ 2022.08.20</span>
-                        <span>올림픽 공원에서 만날것이야. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                    </div>
-                    <div class="card2" data-tilt data-tilt-scale="0.95" data-tilt-startY="40">
-                        <img src="img/metamong.png" alt="">
-                        <span>나는 메타모오오옹이다. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                        <span>2022.08.19 ~ 2022.08.20</span>
-                        <span>올림픽 공원에서 만날것이야. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                    </div>
-                    <div class="card3" data-tilt data-tilt-scale="0.95" data-tilt-startY="40">
-                        <img src="img/metamong.png" alt="">
-                        <span>나는 메타모오오옹이다. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                        <span>2022.08.19 ~ 2022.08.20</span>
-                        <span>올림픽 공원에서 만날것이야. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                    </div>
-                    <div class="card4" data-tilt data-tilt-scale="0.95" data-tilt-startY="40">
-                        <img src="img/metamong.png" alt="">
-                        <span>나는 메타모오오옹이다. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                        <span>2022.08.19 ~ 2022.08.20</span>
-                        <span>올림픽 공원에서 만날것이야. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                    </div>
-                    <div class="card5" data-tilt data-tilt-scale="0.95" data-tilt-startY="40">
-                        <img src="img/metamong.png" alt="">
-                        <span>나는 메타모오오옹이다. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                        <span>2022.08.19 ~ 2022.08.20</span>
-                        <span>올림픽 공원에서 만날것이야. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                    </div>
-                    <div class="card6" data-tilt data-tilt-scale="0.95" data-tilt-startY="40">
-                        <img src="img/metamong.png" alt="">
-                        <span>나는 메타모오오옹이다. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                        <span>2022.08.19 ~ 2022.08.20</span>
-                        <span>올림픽 공원에서 만날것이야. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                    </div>
-                    <div class="card7" data-tilt data-tilt-scale="0.95" data-tilt-startY="40">
-                        <img src="img/metamong.png" alt="">
-                        <span>나는 메타모오오옹이다. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                        <span>2022.08.19 ~ 2022.08.20</span>
-                        <span>올림픽 공원에서 만날것이야. 이것은 글이 박스를 초과했을 시를 대비하여 작성하는 테스트 문서이다!!</span>
-                    </div>
+                    <div class="card0" data-tilt></div>
+                    <div class="card1" data-tilt data-tilt-scale="0.95" data-tilt-startY="40"></div>
+                    <div class="card2" data-tilt data-tilt-scale="0.95" data-tilt-startY="40"></div>
+                    <div class="card3" data-tilt data-tilt-scale="0.95" data-tilt-startY="40"></div>
+                    <div class="card4" data-tilt data-tilt-scale="0.95" data-tilt-startY="40"></div>
+                    <div class="card5" data-tilt data-tilt-scale="0.95" data-tilt-startY="40"></div>
+                    <div class="card6" data-tilt data-tilt-scale="0.95" data-tilt-startY="40"></div>
+                    <div class="card7" data-tilt data-tilt-scale="0.95" data-tilt-startY="40"></div>
 
                 </div>
             </div>
@@ -248,18 +157,13 @@
             slidesToShow: 4,
             slidesToScroll: 4
         });
+        ranking("CONCERT")
+        pick()
     });
 </script>
 
 <script src="js/main/tilt.js"></script>
 
-<!-- 랭킹 출력  -->
-<script type="text/javascript">
-   $(document).ready( function() {
-        ranking("CONCERT")
-        pick()
-  });
-</script>
-
+<script src="/js/ticketopen/ticketdetailinfo.js"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@ public class runJobScheduler {
     private List<EndDateConcertDTO> endDateConcerts;
     private List<Long> postDrawPreStartConcerts;
 
-    //@Scheduled(cron = "")
+//    @Scheduled(cron = "0 0 1 1/1 * *")
     public void runDetermineRankJob() {
         setEndDateConcerts();
 
@@ -48,7 +48,7 @@ public class runJobScheduler {
         }
     }
 
-    //@Scheduled(cron = "")
+//    @Scheduled(cron = "0 0 2 1/1 * *")
     public void runCancelAndSendEmailJob() {
         setPostDrawPreStartConcerts();
 

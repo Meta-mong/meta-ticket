@@ -70,7 +70,7 @@
         </form>
 
         <div class="btn">
-          <button type="button" class="delete" >취소</button>
+          <button type="button" class="delete" onclick="noticecancel()">취소</button>
           <button type="button" class="update" id="update" >등록</button>
         </div>
       </div>
@@ -78,5 +78,12 @@
   </div>
 
 </body>
+
+<script type="text/javascript">
+  function noticecancel() {
+    var id = id;
+    window.location.href = "/admin/anlist/";
+  }
+</script>
 
 </html>

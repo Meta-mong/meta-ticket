@@ -33,7 +33,7 @@
                             / 2</span>
                     </div>
                     <div class="multiple-items">
-                        <div th:each="openticket : ${opentickets}">
+                        <div th:each="openticket : ${opentickets}" th:onclick="|javascript:moveToDetail(${openticket.id})|">
                             <img src="/concert/readImg/" th:attrappend="src=${openticket.phamplet}" alt="">
                             <span th:text="${openticket.title}"></span>
                             <span th:text="'[open] '+${openticket.drawStartDate}" style="color: rgb(15, 228, 15);"></span>
@@ -42,7 +42,7 @@
                 </div>
 
                 <!-- 리스트형 티켓 오픈 소식 -->
-                <form class="ticket-open-query" id="open_query">
+                <div class="genre">
                     <select name="ticket_genre" id="genre" required="required">
                         <option value="TOTAL" selected="selected">전체</option>
                         <option value="CONCERT">콘서트</option>
@@ -50,13 +50,12 @@
                         <option value="CLASSIC">클래식</option>
                         <option value="EXHIBITION">전시/행사</option>
                     </select>
-                    <input type="text" id="title"/>
-                    <button type="button" id="search_btn">검색</button>
-                </form>
+                    <div id="selectedgenre" th:text="${genre}" hidden></div>
+                </div>
 
                 <div class="ticket-open-list">
                     <ul class="open-list-ul">
-                        <li th:each="openticket : ${openticketList}">
+                        <li th:each="openticket : ${openticketList}" th:onclick="|javascript:moveToDetail(${openticket.id})|">
                             <!-- display:span;-->
                             <div class="open-date"><p th:text="티켓오픈일" style="margin: 0px"></p><p th:text="'[오픈] '+${openticket.drawStartDate}" style="margin: 0px"></p></div>
                             <div class="open-info" th:text="${openticket.title}"></div>
@@ -83,11 +82,13 @@
     <script src="/js/main/ticketOpenSlider.js"></script>
     <script src="/js/main/backToTop.js"></script>
     <script src="/js/ticketopen/ticket_open.js"></script>
+    <script src="/js/ticketopen/ticketdetailinfo.js"></script>
     <script>
         $(document).ready(function () {
             $('.multiple-items').slick(
                 {infinite: true, slidesToShow: 4, slidesToScroll: 4}
             );
+            genreCheck($("#selectedgenre").text());
         });
     </script>
 </html>

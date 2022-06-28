@@ -41,9 +41,6 @@ public interface QuestionService {
 
 
 
-    //문의사항 수정 -> 댓글 여부 -> 댓글이 있으면 Y / 없으면 N (answer)
-
-
-
-
+    //QnA 셀렉트 박스 정렬 - 리스트 보이기
+    Page<QuestionDTO.Quest> qnaselet(String classify, Pageable pageable) throws Exception;
 }

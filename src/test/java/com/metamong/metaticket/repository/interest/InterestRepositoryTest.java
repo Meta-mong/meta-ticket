@@ -120,4 +120,9 @@ class InterestRepositoryTest {
         interestRepository.delete(savedInterest);
     }
 
+    @Test
+    void ex() {
+        boolean b = interestRepository.existsByUserIdAndAndConcertId(1L, 1L);
+        System.out.println("b = " + b);
+    }
 }

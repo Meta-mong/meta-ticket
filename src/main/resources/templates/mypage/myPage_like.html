@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
     <!-- swiper -->
     <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css" />
@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="/css/mypage/myPage_like.css">
 
     <!-- js -->
-    <script defer src=""></script>
+    <script defer src="/js/mypage/myPage_like.js"></script>
 
     <title>MyPage</title>
 </head>
@@ -50,91 +50,24 @@
 
                     <div class="like_list">
 
-                        <div class="like-content">
-                            <div class="fnConcertDescription" onclick="">
+                        <div class="like-content" th:each="concert : ${concerts}">
+                            <div class="fnConcertDescription" th:onclick="|javascript:move_description('${concert.id}')|">
                                 <div class="concert-img">
-                                    <figure class="image"><img
-                                            src="https://cdnticket.melon.co.kr/resource/image/upload/marketing/2022/05/2022051018075993e0eb61-ea50-4079-afc2-e3203ebcf6f9.png"
-                                            alt=""></figure>
+                                    <figure class="image"><img src="/concert/readImg/" th:attrappend="src=${concert.phamplet}" alt="">
+                                    </figure>
                                 </div>
                                 <div class="concert-content">
-                                    <h5 name="title">title</h5>
-                                    <h5 name="period">period</h5>
-                                    <h5 name="location">location</h5>
+                                    <h5 name="title" th:text="${concert.title}">title</h5>
+                                    <h5 name="period" th:text="${#temporals.format(concert.concertDate, 'yyyy-MM-dd')}">period</h5>
+                                    <h5 name="location" th:text="${concert.address}">location</h5>
                                 </div>
                             </div>
-                            <div class="like_btn">
+                            <div class="like_btn" th:onclick="|javascript:like_click(${concert.id})|">
                                 <button class="btn-secondary like-review">
-                    <span class="material-icons">
-                      favorite_border
-                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="like-content">
-                            <div class="fnConcertDescription" onclick="">
-                                <div class="concert-img">
-                                    <figure class="image"><img
-                                            src="https://cdnticket.melon.co.kr/resource/image/upload/marketing/2022/05/2022051018075993e0eb61-ea50-4079-afc2-e3203ebcf6f9.png"
-                                            alt=""></figure>
-                                </div>
-                                <div class="concert-content">
-                                    <h5 name="title">title</h5>
-                                    <h5 name="period">period</h5>
-                                    <h5 name="location">location</h5>
-                                </div>
-                            </div>
-                            <div class="like_btn">
-                                <button class="btn-secondary like-review">
-                    <span class="material-icons">
-                      favorite_border
-                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="like-content">
-                            <div class="fnConcertDescription" onclick="">
-                                <div class="concert-img">
-                                    <figure class="image"><img
-                                            src="https://cdnticket.melon.co.kr/resource/image/upload/marketing/2022/05/2022051018075993e0eb61-ea50-4079-afc2-e3203ebcf6f9.png"
-                                            alt=""></figure>
-                                </div>
-                                <div class="concert-content">
-                                    <h5 name="title">title</h5>
-                                    <h5 name="period">period</h5>
-                                    <h5 name="location">location</h5>
-                                </div>
-                            </div>
-                            <div class="like_btn">
-                                <button class="btn-secondary like-review">
-                    <span class="material-icons">
-                      favorite_border
-                    </span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="like-content">
-                            <div class="fnConcertDescription" onclick="">
-                                <div class="concert-img">
-                                    <figure class="image"><img
-                                            src="https://cdnticket.melon.co.kr/resource/image/upload/marketing/2022/05/2022051018075993e0eb61-ea50-4079-afc2-e3203ebcf6f9.png"
-                                            alt=""></figure>
-                                </div>
-                                <div class="concert-content">
-                                    <h5 name="title">title</h5>
-                                    <h5 name="period">period</h5>
-                                    <h5 name="location">location</h5>
-                                </div>
-                            </div>
-                            <div class="like_btn">
-                                <button class="btn-secondary like-review">
-                    <span class="material-icons">
-                      favorite_border
-                    </span>
-                                </button>
+                                    <span class="material-icons">
+                                      favorite_border
+                                    </span>
+                                 </button>
                             </div>
                         </div>
 

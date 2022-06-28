@@ -38,11 +38,11 @@ public class NoticeController {
     @Autowired
     NoticeRepository noticeRepository;
 
-//    @GetMapping("/")
-//    public String admin(){
-//
-//        return "/admin/addnotice";
-//    }
+    //이용안내/FAQ
+    @GetMapping("/faq")
+    public String faq()throws Exception{
+        return "notice/user_FAQ";
+    }
 
 
 // 공지사항  상세페이지 조회
@@ -50,7 +50,7 @@ public class NoticeController {
     public String noticedetail (@PathVariable Long noticeId,Model model) throws Exception {
         NoticeDTO.Notice noticeDto = noticeService.noticedetail(noticeId);
         model.addAttribute("notice",noticeDto);
-        return "/notice/usernoticedetail";
+        return "notice/usernoticedetail";
     }
 
 
@@ -92,7 +92,7 @@ public class NoticeController {
     @PostMapping("/update/{id}")
     public void noticeUpdate(@PathVariable Long id , @ModelAttribute NoticeDTO.Notice dto, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Notice noticeUpdate =noticeService.noticeupdate(dto);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/notice/noticelist");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("notice/noticelist");
         dispatcher.forward(request, response);
     }
 

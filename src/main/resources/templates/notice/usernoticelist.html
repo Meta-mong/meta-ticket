@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
   <meta charset="UTF-8">
@@ -14,25 +15,21 @@
   <script src="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.js"></script>
 
   <!-- css -->
+  <link rel="stylesheet" href="/css/main/main.css">
   <link rel="stylesheet" href="/css/usernotice/noticelist.css">
+  <link rel="stylesheet" href="/css/main/main.css">
 
   <!-- js -->
   <script defer src="/js/notice/usernoticelist.js"></script>
-
-  <!-- 부트스트랩-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
   <title>고객센터 공지사항</title>
 </head>
 
 <body>
+<div class = "main">
 <div th:replace="fragments/header :: headerFragment"></div>
-
     <div class="container" style="min-height: 100vh;">
       <div class="cs">
         고객센터
@@ -43,20 +40,9 @@
         <button type="button" class="btn" th:onclick="|javascript:QNA()|">QnA</button>
       </div>
 
-      <div class="dropdown">
-        <select name="dropdown" id="dropdown" class="dropdown-toggle" required="required">
-          <option value="">전체</option>
-          <option value="공연 소식">공연 소식</option>
-          <option value="공연 오픈">공연 오픈</option>
-          <option value="공연 종료">공연 종료</option>
-          <option value="서비스 점검">서비스 점검</option>
-          <option value="기타">기타</option>
-        </select>
-      </div>
-
 
       <section>
-        <table class="table table-hover">>
+        <table class="table table-hover">
 
           <thead style="height: 40px">
             <tr>
@@ -122,6 +108,7 @@
     </div>
 
 <div th:replace="fragments/footer :: footerFragment"></div>
+    </div>
 </body>
 
 <script type="text/javascript">

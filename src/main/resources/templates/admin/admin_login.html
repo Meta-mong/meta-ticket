@@ -7,50 +7,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script defer type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <!-- css -->
-    <link rel="stylesheet" href="/css/user/signin.css">
-    <link rel="stylesheet" href="/css/main/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-    <script src="https://kit.fontawesome.com/f1962dcf03.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/admin/admin.css">
+    <link rel="stylesheet" href="/css/admin/admin_login.css">
 
-    <!-- js-->
-
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <!-- js -->
+    <script defer src="/js/admin/admin_login.js"></script>
 
     <title>SignIn</title>
 </head>
 
 <body>
-<div class="main">
 
-        <div class="container" style="min-height: 100vh;">
-            <section>
-                <div class="inner">
-                    <div class="title">
-                        <h2>SignIn</h2>
-                    </div>
-                    <form action="/admin" method="POST">
-
+    <div class="container">
+        <section>
+            <div class="main">
+                <p>관리자 페이지</p>
+                <div class="logo">
                     <div class="loginInfo">
-                        <input class="Id" type="text" id="loginId" name="loginId" placeholder="loginId" required> <br>
-
-                        <input class="Pw" type="password" id="password" name="password" placeholder="password" required autocomplete="on"><br>
-
+                        <input class ="userId" type="text" placeholder="아이디"> <br>
+                        <input class ="userPw" type="password" placeholder="비밀번호"><br>
                     </div>
-
-
-                    <div class="loginBt">
-                        <button type="submit" id="signinbtn" onclick="login()">로그인</button>
-                    </div>
-                    </form>
-
                 </div>
-            </section>
-        </div>
+                <div class="list">
+                    <button type="button" class="btn" onclick="adminlogin()">로그인</button>
+                </div>
+            </div>
+        </section>
+    </div>
 
-</div>
 </body>
 
 </html>

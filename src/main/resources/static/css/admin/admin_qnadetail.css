@@ -1,0 +1,128 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+/* button */
+.container .list {
+  display: block;
+  justify-content: left;
+  margin-top: 60px;
+  margin-left: 140px;
+  margin-bottom: -48px;
+}
+
+.container .list .btn {
+  font-size: 23px;
+  /* background-color: rgba(221, 184, 229, 0.964); */
+  margin-left: -6px;
+  background-color: black;
+  color: whitesmoke;
+  border: 0;
+  height: 60px;
+}
+
+.container .list .btn:last-child {
+  background-color: rgb(211, 133, 228);
+}
+
+.container .list .btn:hover {
+  background-color: rgb(215, 158, 228);
+  color: whitesmoke;
+}
+
+/* main */
+.container .innertitle{
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 40px;
+  color: rgb(108, 102, 102);
+}
+
+.container .inner{
+  width: 800px;
+margin: auto;
+margin-top: 40px;
+margin-bottom: 100px;
+
+}
+
+.container .inner .userQnA .QnA{
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  margin : 20px 10px;
+}
+table.QnA th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border: 1px solid #ccc;
+}
+table.QnA th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border: 1px solid #ccc;
+}
+table.QnA td {
+  width: 850px;
+  padding: 10px;
+  vertical-align: top;
+  border: 1px solid #ccc;
+}
+
+.container .inner .cont{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.container .inner .cont .form-control{
+  height: 400px;
+  resize: none;
+}
+
+.container  .btn .qnalist{
+  font-family: 'CookieRun-Regular' !important;
+  height: 45px;
+  width: 100px;
+  background-color: rgb(186,133,236);
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+.container  .btn .delete{
+  font-family: 'CookieRun-Regular' !important;
+  height: 45px;
+  width: 100px;
+  margin-top: 20px;
+  background-color: rgb(186,133,236);
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+.container  .btn .update{
+  font-family: 'CookieRun-Regular' !important;
+  height: 45px;
+  width: 100px;
+  margin-top: 20px;
+  background-color: rgb(186,133,236);
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.container  .btn .delete:hover,
+.container  .btn .qnalist:hover,
+.container  .btn .update:hover{
+  background-color: blueviolet;
+}

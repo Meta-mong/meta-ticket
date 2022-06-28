@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+
   /* common */
   a {
     text-decoration: none;
@@ -376,7 +387,7 @@
 .container .innertitle{
   font-size: 35px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 40px;
   color: rgb(108, 102, 102);
 }
 
@@ -449,20 +460,7 @@ margin-bottom: 100px;
   resize: none;
 }
 
-.container .inner .btn .delete{
-  background-color: rgb(207, 61, 119);
-  width: 200px;
-  padding: 5px 50px;
-  font-size: 23px;
-  font-weight: bold;
-  font-style: italic;
-  border: none;
-  border-radius: 30px;
-  color: rgb(255, 255, 255);
-  background-color: rgb(218, 186, 248);
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
+
 .container .inner .btn .update{
   background-color: rgb(215, 158, 228);
   width: 200px;
@@ -478,4 +476,7 @@ margin-bottom: 100px;
   margin-bottom: 50px;
   
 }
+ .container .inner .btn .update:hover{
+ background-color: rgb(212, 118, 231);
+ }
 

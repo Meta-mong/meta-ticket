@@ -30,7 +30,7 @@ public class DrawServiceImpl implements DrawService {
     public Draw applyDraw(Long userId, Long concertId) {
        User user = userRepository.findById(userId).orElseThrow(() -> new NoSuchElementException());
         Concert concert = concertRepository.findById(concertId).orElseThrow(() -> new NoSuchElementException());
-        Draw draw = Draw.builder().user(user).concert(concert).build();
+        Draw draw = Draw.builder().user(user).concert(concert).state(DrawState.STANDBY).build();
         return drawRepository.save(draw);
     }
 
@@ -39,10 +39,14 @@ public class DrawServiceImpl implements DrawService {
         User user = userRepository.findById(userId).orElseThrow(() -> new NoSuchElementException());
         List<Draw> findDraws = drawRepository.findByUser(user);
 
-        List<DrawDTO.HISTORY> myDraws = findDraws.stream().map(d -> DrawDTO.HISTORY.builder()
+        List<DrawDTO.HISTORY> myDraws = findDraws.stream().map(
+                d -> DrawDTO.HISTORY.builder()
+                        .drawId(d.getId())
                         .concertId(d.getConcert().getId())
+                        .concertPhamplet(d.getConcert().getPhamplet().getId())
                         .concertTitle(d.getConcert().getTitle())
-                        .ranking(d.getRanking() - drawRepository.findLowRankingGroupByConcert(d.getConcert().getId()))
+                        .concertAddress(d.getConcert().getAddress())
+                        .ranking(d.getRanking() - drawRepository.findLowRankingGroupByConcert(d.getConcert().getId()).orElse(0))
                         .state(getDrawStateForFront(d.getState()))
                         .build()
                 )
@@ -76,7 +80,7 @@ public class DrawServiceImpl implements DrawService {
             case QUEUE: return "대기순번";
             case CANCEL: return "취소";
             case STANDBY: return "응모 대기중";
-            case PAYMENT_FINISH: return "결제 완료";
+            case PAYMENT_FINISH: return "당첨";
         }
         return null;
     }

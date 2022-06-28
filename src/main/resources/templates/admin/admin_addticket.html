@@ -36,7 +36,7 @@
                         <div class="preview">
                             <img src="" alt="">
                         </div>
-                        <input type="file" id = "file" name = "file" class="postImg" required="required" style="display: none;">
+                        <input type="file" id = "file" name = "file" class="postImg"  style="display: none;">
                         <button type="button" class="selectBt">사진 선택</button>
                     </div>
                     <div class="text">
@@ -89,8 +89,8 @@
                                 <tr>
                                     <th>등급</th>
                                     <td>
-                                        <select name="ratings" id = "ratings" class = "ratings" required="required">
-                                            <option value="none">=== 선택 ===</option>
+                                        <select name="ratings" id = "ratings" class = "ratings" required="required" >
+                                            <option value="">=== 선택 ===</option>
                                             <option value="ALL">전체관람가</option>
                                             <option value="EIGHT">8세이상</option>
                                             <option value="TWELVE">12세이상</option>
@@ -124,6 +124,7 @@
                     <textarea class="content" name = "description" id = "description" required="required"></textarea>
                 </div>
 
+                <button type="button" class="btn_cancel" onclick="move_ticket()">취소</button>
                 <button type="submit" class="btn_submit" >등록</button>
             </form>
         </div>
@@ -134,7 +135,26 @@
 <!-- javascript -->
 <script type="text/javascript">
   function submitCheck() {
-    alert("등록되었습니다.");
+    var fileCheck = document.getElementById("file").value;
+
+    var drawStartDate = document.getElementById( 'drawStartDate' ).value;
+    var drawEndDate = document.getElementById( 'drawEndDate' ).value;
+    var concertDate = document.getElementById( 'concertDate' ).value;
+
+    if(!fileCheck){
+        alert("파일을 첨부해 주세요");
+        return false;
+    }
+
+    if(drawStartDate > drawEndDate){
+        alert("응모 시작일자와 종료일자를 확인해주세요.");
+        return false;
+    }else if(drawEndDate > concertDate){
+        alert("공연일자를 확인해주세요.");
+        return false;
+    }else{
+     alert("등록되었습니다.");
+    }
   }
 </script>
 

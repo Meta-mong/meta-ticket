@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+
+.main p {
+  font-size: 28px;
+}
+
+.container .main .logo {
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  width: 475px;
+  height: 475px;
+  background-image:  url( "../../img/metamong.png" );
+}
+
+.container .main .logo .loginInfo input {
+  width: 200px;
+  padding: 13px;
+  border: 1px solid #a7a7a7;
+  color: #333;
+  font-size: 16px;
+  margin-top: 220px;
+}
+
+.container .main .logo .loginInfo  .userPw{
+  margin-top: 20px;
+}
+
+.container .main .list {
+  display: flex;
+  justify-content: center;
+}
+
+.container .main .btn {
+  font-size: 23px;
+  background-color: rgba(221, 184, 229, 0.964);
+  color: whitesmoke;
+  width: 200px;
+  margin-top: -50px;
+  border: 0;
+}
+
+.container .main .btn:hover {
+  background-color: rgb(215, 158, 228);
+  color: whitesmoke;
+}

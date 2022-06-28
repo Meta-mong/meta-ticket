@@ -44,20 +44,20 @@
                     <button type="button" th:onclick="|window.location.href='/mypage'|">정보수정</button>
                     <button type="button" th:onclick="|window.location.href='/mypage/draw'|">응모내역</button>
                     <button type="button" >예매내역</button>
-                    <button type="button" th:onclick="|window.location.href='/mypage/like'|">찜목록</button>
+                    <button type="button" th:onclick="|window.location.href='/interests'|">찜목록</button>
                 </div>
                 <div class="pageInfo">
                     <div class="mp-draw-top">
                         <span><i class="fa-solid fa-heart"></i>내 예매 내역</span>
                     </div>
                     <div class="mp-draw-main">
-                        <div>
+                        <div th:each="myPayment:${myPayments}">
                             <div class="mp-ticket-info">
                                 <div class="mp-ticket-info-div">
-                                    <img src="../../static/img/metamong.png" style="width: 120px; height:150px">
+                                    <img src="/concert/readImg/" th:attrappend="src=${myPayment.concertPhamplet}" alt="" style="width: 120px; height:150px">
                                     <div class="mp-ticket-info-div-span">
-                                        <span>뮤지컬 시규어 로스</span>
-                                        <span>세종문화회관 대극장</span>
+                                        <span th:text="${myPayment.concertTitle}">뮤지컬 시규어 로스</span>
+                                        <span th:text="${myPayment.concertAddress}">세종문화회관 대극장</span>
                                     </div>
                                 </div>
                                 <div class="mp-draw-status">
@@ -73,7 +73,7 @@
                                     </svg>
 
                                     <button class="reservation-wait gooey-button">
-                                        결제 대기중
+                                        <span th:text="${myPayment.status}">결제 대기중</span>
                                         <span class="reservation-wait-span bubbles">
                                     <span class="bubble"></span>
                                     <span class="bubble"></span>
@@ -90,85 +90,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <div class="mp-ticket-info">
-                                <div class="mp-ticket-info-div">
-                                    <img src="../../static/img/metamong.png" style="width: 120px; height:150px">
-                                    <div class="mp-ticket-info-div-span">
-                                        <span>뮤지컬 시규어 로스</span>
-                                        <span>세종문화회관 대극장</span>
-                                    </div>
-                                </div>
-                                <div class="mp-draw-status">
-                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                        <defs>
-                                            <filter id="gooey">
-                                                <!-- in="sourceGraphic" -->
-                                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-                                                <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
-                                                <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
-                                            </filter>
-                                        </defs>
-                                    </svg>
-
-                                    <button class="reservation-cancel gooey-button">
-                                        결제 취소
-                                        <span class="reservation-cancel-span bubbles">
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                </span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="mp-ticket-info">
-                                <div class="mp-ticket-info-div">
-                                    <img src="../../static/img/metamong.png" style="width: 120px; height:150px">
-                                    <div class="mp-ticket-info-div-span">
-                                        <span>뮤지컬 시규어 로스</span>
-                                        <span>세종문화회관 대극장</span>
-                                    </div>
-                                </div>
-                                <div class="mp-draw-status">
-                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                        <defs>
-                                            <filter id="gooey">
-                                                <!-- in="sourceGraphic" -->
-                                                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-                                                <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="highContrastGraphic" />
-                                                <feComposite in="SourceGraphic" in2="highContrastGraphic" operator="atop" />
-                                            </filter>
-                                        </defs>
-                                    </svg>
-
-                                    <button class="reservation-finish gooey-button">
-                                        결제 완료
-                                        <span class="reservation-finish-span bubbles">
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                    <span class="bubble"></span>
-                                </span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 

@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+
 .ranking-page {
     width: 1008px;
     margin: 60px auto;
@@ -13,12 +24,13 @@
     justify-content: space-between;
     background-color: white;
     border-bottom: 8px solid rgb(216, 216, 216);
+    padding-bottom: 10px;
 }
 
 .ranking-page-div-top-left {
     font-size: 30px;
     font-weight: 600;
-    line-height: 2;
+    line-height: 2.3;
 }
 
 .ranking-page-div-top-right {
@@ -116,7 +128,7 @@
 
 .concert-time, .concert-place{
     margin: auto 0px;
-    margin-right: 25px;
+    margin-right: 44px;
 }
 
 .concert-time {
@@ -128,12 +140,27 @@
     width: 150px;
 }
 
+.concert-place > span{
+    margin-left: 10px;
+}
+
 .reservation {
     margin: auto 0px;
     margin-right: 34px;
+    width: 50px;
 }
 
 .concert-time > p {
     text-align: center;
-    margin: auto;
+    margin-right: 7px;
+}
+
+.onlySelling {
+    width: 63px;
+    border: 1px solid #9dff9d;
+    background-color: #31c000;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
 }

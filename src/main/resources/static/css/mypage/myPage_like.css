@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+
 /* menu_btn */
 .inner .btn > button:nth-child(4){
     background-color: rgb(218, 169, 228);
@@ -23,26 +34,38 @@
 .inner .pageInfo .like_list {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
-    margin-top: 100px;
+    margin: 100px 0;
+    margin-left : 120px;
 }
 
 .inner .pageInfo .like_list .like-content {
-    border: 2px solid black;
+    border: 2px solid lightgray;
     margin: 20px;
+    width : 260px;
+    height : 360px;
 }
 
-.inner .pageInfo .like_list  .like-content .fnConcertDescription{
+.inner .pageInfo .like_list  .like-content img{
+    width: 230px;
+    height: 250px;
+    margin: 10px;
+}
 
+.inner .pageInfo .like_list  .like-content h5{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
 }
 
 .inner .pageInfo .like_list .like-content .like_btn {
     background-color: whitesmoke;
-
 }
 
 .inner .pageInfo .like_list .like-content .like_btn .btn-secondary{
     border: 0;
     float: right;
+    color: red !important;
+    text-shadow: 0;
 }

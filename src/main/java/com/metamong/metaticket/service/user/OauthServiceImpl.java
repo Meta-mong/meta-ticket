@@ -1,7 +1,9 @@
 package com.metamong.metaticket.service.user;
 
+import com.metamong.metaticket.domain.log.Log;
 import com.metamong.metaticket.domain.user.User;
 import com.metamong.metaticket.domain.user.dto.UserDTO;
+import com.metamong.metaticket.repository.log.LogRepository;
 import com.metamong.metaticket.repository.user.UserRepository;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -17,6 +19,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 
 @Service
 public class OauthServiceImpl implements OauthService{
@@ -32,6 +35,9 @@ public class OauthServiceImpl implements OauthService{
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    LogRepository logRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -98,9 +104,9 @@ public class OauthServiceImpl implements OauthService{
         return accessToken;
     }
 
-    public void kakaoUserAccess(String token) throws Exception{
+    public int kakaoUserAccess(String token) throws Exception{
         String requestURL = "https://kapi.kakao.com/v2/user/me";
-
+        int res = 0; //0:new     1:exist
         //access token을 이용한 사용자 정보 조회
         try{
             URL url = new URL(requestURL);
@@ -120,7 +126,7 @@ public class OauthServiceImpl implements OauthService{
             while ((line = br.readLine()) != null){
                 result += line;
             }
-            System.out.println("response body : " + result);
+            //System.out.println("response body : " + result);
 
             JSONParser parser = new JSONParser();
             JSONObject object = (JSONObject) parser.parse(result);
@@ -148,7 +154,10 @@ public class OauthServiceImpl implements OauthService{
                         .build();
                 user = User.createUser(dto, passwordEncoder);
                 userRepository.save(user);
+            }else{
+                res=1;
             }
+            /* 추후 user table에 social login attr 추가
             UserDTO.SIGN_IN signInDto = UserDTO.SIGN_IN.builder()
                     .email(user.getEmail())
                     .passwd(String.valueOf(id))
@@ -156,11 +165,21 @@ public class OauthServiceImpl implements OauthService{
 
             int signInResult = userService.signIn(signInDto, session);
             if(signInResult!=1) throw new Exception("kakao login 실패");
+            */
+
+            UserDTO.SESSION_USER_DATA userDTO = User.createUserDTO(user);
+            session.setAttribute("user", userDTO);
+            Log log = Log.builder()
+                    .visitDate(LocalDateTime.now())
+                    .user(user)
+                    .build();
+            logRepository.save(log);
 
             br.close();
         } catch(Exception e){
             e.printStackTrace();
             throw e;
         }
+        return res;
     }
 }

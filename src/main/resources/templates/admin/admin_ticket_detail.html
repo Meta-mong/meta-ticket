@@ -37,7 +37,7 @@
                                   th:attrappend="src=${concert.phamplet}"
                                   alt="">
                         </div>
-                        <input type="file" cid = "file" name = "file" lass="postImg" style="display: none;">
+                        <input type="file" id = "file" name = "file" class="postImg" style="display: none;">
                         <button class="selectBt">사진 선택</button>
                     </div>
                     <div class="text">
@@ -61,7 +61,7 @@
                             <table id="vertical-1">
                                 <tr>
                                     <th>제목</th>
-                                    <td ><input type="text" name="title" id="title" placeholder="" th:value="${concert.title}"></td>
+                                    <td ><input type="text" name="title" id="title" required="required"  placeholder="" th:value="${concert.title}"></td>
                                 </tr>
                             </table>
                         </div>
@@ -69,11 +69,11 @@
                             <table id="vertical-1">
                                 <tr>
                                     <th>응모시작날짜</th>
-                                    <td><input type="date" name="drawStartDate" id="drawStartDate" placeholder="" th:value="${#temporals.format(concert.drawStartDate, 'yyyy-MM-dd')}"></td>
+                                    <td><input type="date" name="drawStartDate" id="drawStartDate" required="required" placeholder="" th:value="${#temporals.format(concert.drawStartDate, 'yyyy-MM-dd')}"></td>
                                 </tr>
                                 <tr>
                                     <th>응모마감날짜</th>
-                                    <td><input type="date" name="drawEndDate" id="drawEndDate"  placeholder="" th:value="${#temporals.format(concert.drawEndDate, 'yyyy-MM-dd')}"></td>
+                                    <td><input type="date" name="drawEndDate" id="drawEndDate"  required="required" placeholder="" th:value="${#temporals.format(concert.drawEndDate, 'yyyy-MM-dd')}"></td>
                                 </tr>
                             </table>
                         </div>
@@ -81,11 +81,11 @@
                             <table id="vertical-1">
                                 <tr>
                                     <th>공연일시</th>
-                                    <td><input type="datetime-local" name="concertDate" id="concertDate" placeholder="" th:value="${concert.concertDate}"></td>
+                                    <td><input type="datetime-local" name="concertDate" id="concertDate"  required="required"placeholder="" th:value="${concert.concertDate}"></td>
                                 </tr>
                                 <tr>
                                     <th>공연장소</th>
-                                    <td><input type="text" name="address" id="address" placeholder="" th:value="${concert.address}"></td>
+                                    <td><input type="text" name="address" id="address" required="required" placeholder="" th:value="${concert.address}"></td>
                                 </tr>
                             </table>
                         </div>
@@ -95,7 +95,7 @@
                                     <th>장르</th>
                                     <td>
                                         <select name="genre" id = "genre" class="genre" required="required" th:field="${concert.genre}" th:value="${concert.genre}">
-                                            <option value="none">=== 선택 ===</option>
+                                            <option value="">=== 선택 ===</option>
                                             <option value="CONCERT">콘서트</option>
                                             <option value="MUSICAL_DRAMA">뮤지컬/연극</option>
                                             <option value="CLASSIC">클래식</option>
@@ -107,7 +107,7 @@
                                     <th>등급</th>
                                     <td>
                                         <select name="ratings" id = "ratings"  class = "ratings" required="required" th:field="${concert.ratings}" th:value="${concert.ratings}">
-                                            <option value="none">=== 선택 ===</option>
+                                            <option value="">=== 선택 ===</option>
                                             <option value="ALL">전체관람가</option>
                                             <option value="EIGHT">8세이상</option>
                                             <option value="TWELVE">12세이상</option>
@@ -118,7 +118,7 @@
                                 </tr>
                                 <tr>
                                     <th>좌석수</th>
-                                    <td><input type="text" name="seatNum" id="seatNum" placeholder="" th:value="${concert.seatNum}"></td>
+                                    <td><input type="text" name="seatNum" id="seatNum"  required="required" placeholder="" th:value="${concert.seatNum}"></td>
                                 </tr>
                             </table>
                         </div>
@@ -126,11 +126,11 @@
                             <table id="vertical-1">
                                 <tr>
                                     <th>주최측</th>
-                                    <td><input type="text" name = "host" id = "host" placeholder="" th:value="${concert.host}"></td>
+                                    <td><input type="text" name = "host" id = "host" required="required" placeholder="" th:value="${concert.host}"></td>
                                 </tr>
                                 <tr>
                                     <th>가격</th>
-                                    <td><input type="text" name = "price" id = "price" placeholder="" th:value="${concert.price}"></td>
+                                    <td><input type="text" name = "price" id = "price" required="required" placeholder="" th:value="${concert.price}"></td>
                                 </tr>
                             </table>
                         </div>
@@ -140,6 +140,7 @@
                     <p>공연 스크립트</p>
                     <textarea class="content" name = "description" id = "description" required="required" th:text="${concert.description}"></textarea>
                 </div>
+
                 <button type="button" class="btn_list" th:onclick="|javascript:move_ticket()|">목록으로</button>
                 <button type="button" class="btn_modify" th:onclick="|javascript:ticket_modify('${concert.id}')|">수정</button>
                 <button type="button" class="btn_delete" th:onclick="|javascript:ticket_delete('${concert.id}')|">삭제</button>
@@ -166,16 +167,28 @@
 <!-- javascript -->
 <script type="text/javascript">
   function ticket_modify(id) {
+    var id = id;
 
-  var id = id;
+    var drawStartDate = document.getElementById( 'drawStartDate' ).value;
+    var drawEndDate = document.getElementById( 'drawEndDate' ).value;
+    var concertDate = document.getElementById( 'concertDate' ).value;
 
-    if(confirm("정말 수정하시겠습니까?") == true){
-        document.frm.submit();
-        alert("수정되었습니다");
+    if(drawStartDate > drawEndDate){
+        alert("응모 시작일자와 종료일자를 확인해주세요.");
+        return false;
+    }else if(drawEndDate > concertDate){
+        alert("공연일자를 확인해주세요.");
+        return false;
     }else{
-        alert("수정이 취소되었습니다.");
-        window.location.href = "/concert/admin/"+id;
+        if(confirm("수정하시겠습니까?") == true){
+            document.frm.submit();
+            alert("수정되었습니다");
+        }else{
+            alert("수정이 취소되었습니다.");
+            window.location.href = "/concert/admin/"+id;
+        }
     }
+
   }
 </script>
 

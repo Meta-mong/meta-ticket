@@ -1,3 +1,14 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+
 .ticket-open-issue {
   /* position: relative; */
   width: 1008px;
@@ -42,7 +53,7 @@ input {
   width: 650px;
 }
 
-button {
+.button {
   margin-left: 5px;
   width: 180px;
   border: none;
@@ -54,7 +65,7 @@ button {
 .ticket-open-list {
   width: 1008px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 0px;
   margin-bottom: 100px;
   font-size: 20px;
 }
@@ -87,6 +98,10 @@ li:last-child{
 }
 
 .open-info {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   width: 500px;
   margin-left: 100px;
   line-height: 80px;
@@ -104,3 +119,7 @@ li:last-child{
   object-fit: cover;
 }
 
+.genre {
+  width: 1008px;
+  margin: 0px auto;
+}

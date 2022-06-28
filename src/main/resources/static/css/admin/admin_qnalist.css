@@ -1,0 +1,177 @@
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'CookieRun-Regular' !important;
+}
+/* button */
+.container .list {
+  display: block;
+  justify-content: left;
+  margin-top: 60px;
+  margin-left: 140px;
+  margin-bottom: -48px;
+}
+
+.container .list .btn {
+  font-size: 23px;
+  /* background-color: rgba(221, 184, 229, 0.964); */
+  margin-left: -6px;
+  background-color: black;
+  color: whitesmoke;
+  border: 0;
+  height: 60px;
+}
+
+.container .list .btn:last-child {
+  background-color: rgb(211, 133, 228);
+}
+
+.container .list .btn:hover {
+  background-color: rgb(215, 158, 228);
+  color: whitesmoke;
+}
+
+/* main */
+.container .main .noticebtn{
+  display: block;
+  justify-content: left;
+  float: left;
+  text-align: center;
+  height: 40px;
+  width : 104px;
+  font-size: 23px;
+  background-color: lightgray;
+  color: whitesmoke;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  border: 0;
+}
+
+.container .main .QnAbtn{
+  display: block;
+  justify-content: left;
+  float: left;
+  text-align: center;
+  height: 40px;
+  width : 104px;
+  font-size: 23px;
+  background-color: lightgray;
+  color: whitesmoke;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  border: 0;
+}
+
+.container .main .QnAbtn:hover
+.container .main .noticebtn:hover {
+  background-color: gray;
+  color: whitesmoke;
+}
+
+.container .main .btn_submit {
+  display: block;
+  justify-content: left;
+  float: left;
+  text-align: center;
+  height: 40px;
+  width : 104px;
+  font-size: 23px;
+  background-color: rgb(218,186,248);
+  color: whitesmoke;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  border: 0;
+}
+
+.container .main .btn_submit:hover {
+  background-color: rgb(186,133,236);
+  color: whitesmoke;
+}
+
+
+.container .main .search {
+  float: right;
+  margin-right: 30px;
+  margin-top: 28px;
+  height: 40px;
+  width: 230px;
+  border: 1px solid lightgray;
+  background-color: #fff;
+}
+
+.container .main .search input {
+  font-size: 16px;
+  width: 160px;
+  padding: 10px;
+  border: 0px;
+  outline: none;
+  float: left;
+}
+
+.container .main .search button {
+  width: 50px;
+  height: 100%;
+  border: 0px;
+  background-color: gray;
+  outline: none;
+  float: right;
+  color: #fff;
+}
+.container .main .dropdown .dropdown-toggle{
+float:right;
+width:180px;
+height:40px;
+margin-top:20px;
+
+}
+
+/* ticket_list */
+.container .main .inner {
+  min-height 550px;
+}
+
+.container .main .notice_list{
+  width: 100%;
+  border: solid 1px lightgray;
+  border-collapse: collapse;
+
+}
+
+ .container .main .question_list{
+  width: 100%;
+  border: solid 1px lightgray;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.container .main .notice_list th,
+ .container .main .question_list th{
+  padding: 10px;
+  text-align :center;
+}
+
+.container .main .notice_list td,
+ .container .main .question_list td{
+  padding: 10px;
+  border-top: solid 1px lightgray;
+}
+
+.container .main .question_list td:nth-child(3){
+    overflow:hidden;
+    white-space : nowrap;
+    text-overflow: ellipsis;
+}
+
+.container .main .question_list td:last-child{
+    overflow:hidden;
+    white-space : nowrap;
+    text-overflow: ellipsis;
+}

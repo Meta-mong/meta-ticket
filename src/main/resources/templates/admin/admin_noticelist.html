@@ -24,7 +24,6 @@
 
   <!-- js -->
   <script defer src="/js/admin/admin.js"></script>
-  <script defer src="/js/admin/admin.js"></script>
 
   <title>admin</title>
 </head>
@@ -41,13 +40,10 @@
   <section>
     <div class="main">
 
-      <button type="button" class="btn" onclick="notice_list()" style="background-color: gray;">공지사항</button>
-      <button type="button" class="btn" onclick="qna_list()">QnA</button>
+      <button type="button" class="noticebtn" onclick="notice_list()">공지사항</button>
+      <button type="button" class="QnAbtn" onclick="qna_list()">QnA</button>
+      <button type="button" class="btn btn_submit" onclick="noticeClick()">등록</button>
 
-      <div class="search">
-        <input type="text" placeholder="">
-        <button type="button" class="material-icons">search</button>
-      </div>
 <div class="inner">
       <table class="notice_list" >
 
@@ -71,8 +67,9 @@
 
           </tbody>
         </table>
+
 </div>
-      <button type="button" class="btn" onclick="noticeClick()">등록</button>
+
 
       <nav style="text-align: center;">
         <ul class="pagination"
@@ -116,7 +113,7 @@
 <script type="text/javascript">
   function adminnoticeClick(id) {
     var id = id;
-    window.location.href = "/admin/noticedetail/"+id
+    window.location.href = "/admin/noticeupdate/"+id
   }
 
 
@@ -134,10 +131,6 @@
     var id = id;
     window.location.href = "/admin/aqlist"
   }
-
-
-
-
 </script>
 
 

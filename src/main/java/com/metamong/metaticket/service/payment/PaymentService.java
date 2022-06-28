@@ -3,13 +3,18 @@ package com.metamong.metaticket.service.payment;
 import com.metamong.metaticket.domain.concert.Concert;
 import com.metamong.metaticket.domain.draw.Draw;
 import com.metamong.metaticket.domain.payment.Payment;
+import com.metamong.metaticket.domain.payment.dto.PaymentDTO;
 import com.metamong.metaticket.domain.user.User;
-import com.metamong.metaticket.domain.user.dto.UserDTO;
+
+import java.util.List;
 
 
 public interface PaymentService {
 
     Payment savePayment(User user, Concert concert);
+
+    //내 결제내역
+    List<PaymentDTO.HiSTORY> findByUserId(Long userId);
 
     void sendPaymentEmail(Draw draw);
 

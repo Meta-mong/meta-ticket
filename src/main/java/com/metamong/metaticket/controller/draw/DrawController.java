@@ -32,18 +32,18 @@ public class DrawController {
         return "mypage/draw";
     }
 
-    @PostMapping("/{concertId}")
+    @PostMapping ("/{concertId}")
     public String applyDraw(@PathVariable("concertId") Long concertId) {
+        if(session.getAttribute("user")==null) return "redirect:/signin";
         UserDTO.SESSION_USER_DATA currentUser = (UserDTO.SESSION_USER_DATA) session.getAttribute("user");
         drawService.applyDraw(currentUser.getId(), concertId);
-
-        return "/mypage/draw";
+        return "redirect:mypage/draw";
     }
 
     @PostMapping("/delete/{drawId}")
     public String cancelDraw(@PathVariable("drawId") Long drawId) {
         //유저 확인해야됨
         drawService.cancelDraw(drawId);
-        return "/mypage/draw";
+        return "mypage/draw";
     }
 }

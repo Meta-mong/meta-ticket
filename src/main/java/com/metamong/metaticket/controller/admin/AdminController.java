@@ -1,6 +1,7 @@
 package com.metamong.metaticket.controller.admin;
 
 
+import com.metamong.metaticket.domain.concert.Genre;
 import com.metamong.metaticket.domain.draw.dto.DrawDTO;
 import com.metamong.metaticket.domain.notice.Notice;
 import com.metamong.metaticket.domain.notice.dto.NoticeDTO;
@@ -61,16 +62,15 @@ public class AdminController {
     @Autowired
     QuestionService questionService;
 
-    @Autowired
-    QuestionRepository questionRepository;
+
 
     //로그인 /로그아웃
     @GetMapping
     public String login ()throws Exception{
-        return "/admin/admin_login";
+        return "admin/admin_login";
     }
 
-
+    @ResponseBody
     @PostMapping
     public String adminLogin(@RequestParam ("loginId") String loginId,
                              @RequestParam("password") String password, Model model)throws Exception{
@@ -81,23 +81,23 @@ public class AdminController {
             if(result ==true){
                 System.out.println("성공");
                 session.setAttribute("adminlogin",adminService.adminInfo(loginId));
-                return "redirect:/concert/adminConcert";
+                return String.valueOf(result);
             }else {
                 model.addAttribute("err","로그인에 실패했습니다.");
-                return "redirect:/admin/login";
+                return String.valueOf(result);
             }
 
         }catch (Exception e){
             model.addAttribute("err","계정 정보가 없습니다.");
-            return "redirect:/admin/login";
-         }
+            return "redirect:admin/login";
+        }
     }
 
     @GetMapping("/logout")
     public String adminLogout(HttpSession session){
         adminService.adminLogout(session);
 
-        return "redirect:/admin/adminlogin";
+        return "redirect:admin/adminlogin";
     }
 
     //전체 사용자 조회
@@ -115,7 +115,7 @@ public class AdminController {
         model.addAttribute("users", userDtos);
         model.addAttribute("pageInfo", userPage);
 
-        return "/admin/admin_user";
+        return "admin/admin_user";
     }
 
     //회원 정보 상세 조회 페이지
@@ -128,19 +128,16 @@ public class AdminController {
         model.addAttribute("user", dto);
         model.addAttribute("draws", draws);
         model.addAttribute("page", page);
-        return "/admin/admin_user_detail";
+        return "admin/admin_user_detail";
     }
 
     //회원 정보 수정
     @PostMapping ("/modifyuser")
     @ResponseBody
-    public Map<String, Object> modifyUser(@RequestParam("email") String email, @RequestParam("name") String name,
-                                          @RequestParam("loserCnt") int loserCnt, @RequestParam("cancelCnt") int cancelCnt){
+    public Map<String, Object> modifyUser(@RequestParam("email") String email, @RequestParam("name") String name){
         Map<String, Object> map = new HashMap<>();
         User user = userService.userInfo(email);
         user.setName(name.trim());
-        user.setLoserCnt(loserCnt);
-        user.setCancelCnt(cancelCnt);
         map.put("result", userService.saveUser(user));
 
         return map;
@@ -161,12 +158,12 @@ public class AdminController {
     }
 
 // 공지사항  상세페이지 조회
-    @GetMapping("/noticedetail/{noticeId}")
-    public String noticedetail (@PathVariable Long noticeId,Model model) throws Exception {
-        NoticeDTO.Notice noticeDto = noticeService.noticedetail(noticeId);
-        model.addAttribute("notice",noticeDto);
-        return "/admin/admin_noticedetail";
-    }
+//    @GetMapping("/noticedetail/{noticeId}")
+//    public String noticedetail (@PathVariable Long noticeId,Model model) throws Exception {
+//        NoticeDTO.Notice noticeDto = noticeService.noticedetail(noticeId);
+//        model.addAttribute("notice",noticeDto);
+//        return "/admin/admin_noticedetail";
+//    }
 
 
     //관리자 공지사항 등록
@@ -174,13 +171,13 @@ public class AdminController {
     @GetMapping("/noticeadd")
     public String questionadd(){
 
-        return "/admin/admin_noticeadd";
+        return "admin/admin_noticeadd";
     }
 
     @PostMapping("/noticeadd")
     @ResponseBody
     public Map<String,Object> noticeadd(@RequestParam("title") String title, @RequestParam("classify") String classify,
-                            @RequestParam("content")String content) throws Exception {
+                                        @RequestParam("content")String content) throws Exception {
         Map<String,Object> map = new HashMap<>();
         NoticeDTO.Notice dto = NoticeDTO.Notice.builder()
                 .title(title)
@@ -204,7 +201,7 @@ public class AdminController {
     public String noticeUpdate(@PathVariable Long noticeId, Model model) throws Exception {
         NoticeDTO.Notice dto = noticeService.noticedetail(noticeId);
         model.addAttribute("notice", dto);
-        return "/admin/admin_noticeupdate";
+        return "admin/admin_noticeupdate";
     }
 
 
@@ -212,7 +209,7 @@ public class AdminController {
     @PostMapping("/noticeupdate/{noticeId}")
     @ResponseBody
     public Map<String,Object> noticeUpdate(@PathVariable Long noticeId, @RequestParam("title") String title, @RequestParam("classify") String classify,
-                                        @RequestParam("content")String content) throws Exception {
+                                           @RequestParam("content")String content) throws Exception {
         Map<String,Object> map = new HashMap<>();
         NoticeDTO.Notice dto = NoticeDTO.Notice.builder()
                 .id(noticeId)
@@ -239,26 +236,22 @@ public class AdminController {
 
     @GetMapping("/noticedelete/{noticeId}")
     public void noticedelete (@PathVariable Long noticeId, HttpServletRequest request,
-                                HttpServletResponse response) throws Exception {
+                              HttpServletResponse response) throws Exception {
         noticeService.noticeDelete(noticeId);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/anlist");
         dispatcher.forward(request,response);
     }
 
-
-
-
-
-    ///////////////////////////////////////////////////////////////
-
-
-
-
-
     //문의사항 전체 조회
-    @GetMapping("/aqlist")
-    public String questionList( Model model, Pageable pageable) throws Exception{
-        Page<QuestionDTO.Quest> questionList = questionService.allQuestionList(pageable);
+    @GetMapping(value = {"/aqlist","/aqlist/{classify}"})
+    public String questionList( @PathVariable(required = false)String classify,Model model, Pageable pageable) throws Exception{
+        Page<QuestionDTO.Quest> questionList = null;
+        if(classify == null || classify.equals("total")){
+            questionList = questionService.allQuestionList(pageable);
+        }else {
+            questionList = questionService.qnaselet(classify, pageable);
+            model.addAttribute("classify", classify);
+        }
         model.addAttribute("allQuestionList", questionList);
 
         log.info("총 element 수 : {}, 전체 page 수 : {}, 페이지에 표시할 element 수 : {}, 현재 페이지 index : {}, 현재 페이지의 element 수 : {}",
@@ -267,6 +260,8 @@ public class AdminController {
 
         return "admin/admin_qnalist";
     }
+
+
     //문의사항 상세조회
     @GetMapping("/qnadetail/{questionId}")
     public String questiondetail (@PathVariable Long questionId,Model model) throws Exception {
@@ -274,7 +269,7 @@ public class AdminController {
         User user = userService.userInfo(questionDto.getUserId());
         model.addAttribute("userName", user.getName());
         model.addAttribute("question",questionDto);
-        return "/admin/admin_qnadetail";
+        return "admin/admin_qnadetail";
     }
 
     //문의사항 답글 등록 페이지 이동
@@ -284,14 +279,14 @@ public class AdminController {
         User user = userService.userInfo(questionDto.getUserId());
         model.addAttribute("userName", user.getName());
         model.addAttribute("question",questionDto);
-        return "/admin/admin_qnareply";
+        return "admin/admin_qnareply";
     }
 
     // 문의사항 답글 등록 처리
     @PostMapping("/qnareply/{questionId}")
     @ResponseBody
     public Map<String, Object> questionUpdate(@PathVariable Long questionId,
-                                 @RequestParam("admincontent") String admincontent) {
+                                              @RequestParam("admincontent") String admincontent) {
         System.out.println("확인 : "+admincontent);
         Map<String,Object> map = new HashMap<>();
         try {
@@ -310,12 +305,9 @@ public class AdminController {
     public void questionDelete (@PathVariable Long questionId, HttpServletRequest request,
                                 HttpServletResponse response) throws Exception {
         questionService.questionDelete(questionId);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/aqlist");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin/aqlist");
         dispatcher.forward(request,response);
     }
-
-
-
 
 
 

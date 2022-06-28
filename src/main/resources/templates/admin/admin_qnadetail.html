@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -10,7 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- css -->
-  <link rel="stylesheet" href="/css/userqna/userqnadetail.css">
+  <link rel="stylesheet" href="/css/admin/admin_qnadetail.css">
+  <link rel="stylesheet" href="/css/admin/admin.css">
 
   <!-- js -->
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -24,56 +25,67 @@
 
 <body>
 
-    <div class="container" style="min-height: 100vh;">
-
-      <div class="innertitle">QnA상세페이지</div>
+    <div class="container">
+      <div class="list">
+        <button type="button" class="btn" th:onclick="|javascript:move_ticket()|">티켓관리</button>
+        <button type="button" class="btn" th:onclick="|javascript:move_user()|">회원관리</button>
+        <button type="button" class="btn" th:onclick="|javascript:move_notice()|">게시판관리</button>
+      </div>
       <section>
-        <div class="inner">
-          <form action='<c:url value="/admin/admin_aqlist"/>' method="post">
-            <div class="userQnA"> 
-              <table class ="QnA">
-                <tr>
-                  <th scope="row">글번호 </th>
-                  <td th:text="${question.id}" id="ques_id"></td>
-                </tr>
-                <tr>
-                  <th scope="row">분류</th>
-                  <td th:text="${question.classify}"></td>
-                </tr>
-                <tr>
-                  <th scope="row">제목</th>
-                  <td th:text="${question.title}" id="title"></td>
-                </tr>
-                 <tr>
-                  <th scope="row">작성일</th>
-                   <td scope="row" th:text="${question.createDate}"></td>
-                </tr>
-                <tr>
-                  <th scope="row">작성자</th>
-                  <td scope="row" th:text="${question.userName}"></td>
-                </tr>
-                <tr>
-                  <th>내용</th>
-                  <td th:text="${question.quesContent}" id="content"></td>
-                </tr>
-                <tr>
-                  <th>관리자 답변 </th>
-                  <td th:text="${question.answer}"></td>
-                </tr>
-
-
-              </table>
-            </div>
-          </form>
-        
+        <div class="main">
+          <div class="innertitle">QnA상세페이지</div>
+          <div class="inner">
+            <form action='<c:url value="/admin/admin_aqlist"/>' method="post">
+              <div class="userQnA">
+                <table class ="QnA">
+                  <tr>
+                    <th scope="row">글번호 </th>
+                    <td th:text="${question.id}" id="ques_id"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">분류</th>
+                    <td th:if="${question.classify == 'concert'}">공연/티켓</td>
+                    <td th:if="${question.classify == 'cancel'}">취소/환불</td>
+                    <td th:if="${question.classify == 'event'}">이벤트</td>
+                    <td th:if="${question.classify == 'member'}">회원</td>
+                    <td th:if="${question.classify == 'etc'}">기타</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">제목</th>
+                    <td th:text="${question.title}" id="title"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">작성일</th>
+                    <td scope="row" th:text="${question.createDate}"></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">작성자</th>
+                    <td scope="row" th:text="${question.userName}"></td>
+                  </tr>
+                  <tr>
+                    <th>내용</th>
+                    <td th:text="${question.quesContent}" id="content"></td>
+                  </tr>
+                  <tr>
+                    <th>관리자 답변 </th>
+                    <td th:text="${question.answer}"></td>
+                  </tr>
+                </table>
+              </div>
+            </form>
+          </div>
           <div class="btn">
-            <button type="button" class="qnalist" onclick="questionList()">목록</button>
+            <button type="button" class="qnalist" onclick="questionList()">목록으로</button>
             <button type="button" class="delete" th:onclick="|javascript:qnadelete('${question.id}')|" id="del-btn"  >삭제</button>
             <button type="button" class="update" th:onclick="|javascript:qnaupdate('${question.id}')|" >등록/수정</button>
           </div>
         </div>
       </section>
     </div>
+  </div>
+</div>
+</section>
+</div>
 
 </body>
 
